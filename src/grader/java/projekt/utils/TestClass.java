@@ -245,6 +245,19 @@ public class TestClass {
     }
 
     /**
+     * Creates a descriptive predicate from a given signature that matches the name and generic parameters of an
+     * {@link Executable}. The description can be retrieved using {@link DescriptivePredicate#getDescription()}.
+     *
+     * @param signature   the signature of a constructor or method
+     * @param description the description of this predicate
+     * @return a new {@link DescriptivePredicate}
+     */
+    protected static DescriptivePredicate<? extends Executable> descriptivePredicateFromSignature(String signature,
+                                                                                                  String description) {
+        return new DescriptivePredicate<>(predicateFromSignature(signature), description);
+    }
+
+    /**
      * Splits comma-seperated parameters while keeping type parameters inside angled brackets intact.
      * Comma-seperated type parameters will have their separator extended / trimmed to a comma directly followed by a space.
      *

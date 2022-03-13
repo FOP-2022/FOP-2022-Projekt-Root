@@ -200,9 +200,11 @@ public class TutorAssertions extends Assertions {
             .collect(Collectors.toUnmodifiableSet());
 
         if (filteredFields.size() == 0) {
-            throw new AssertionFailedError("No fields matching the given predicate were found");
+            throw new AssertionFailedError("No fields matching the given predicate were found"
+                + (predicate instanceof DescriptivePredicate<Field> p ? ".\n" + p.getDescription() : ""));
         } else if (filteredFields.size() != 1) {
-            throw new AssertionFailedError("Multiple fields matching the given predicate were found - cannot resolve ambiguity");
+            throw new AssertionFailedError("Multiple fields matching the given predicate were found - cannot resolve ambiguity"
+                + (predicate instanceof DescriptivePredicate<Field> p ? ".\n" + p.getDescription() : ""));
         } else {
             return filteredFields.iterator().next();
         }
@@ -244,14 +246,17 @@ public class TutorAssertions extends Assertions {
                                    @Nullable String fieldName) {
         if (modifiers != null) {
             assertModifiers(modifiers, field.getModifiers(),
-                "Modifiers of field '%s' don't match the expected ones".formatted(field.getName()));
+                "Modifiers of field '%s' in class '%s' don't match the expected ones"
+                    .formatted(field.getName(), field.getDeclaringClass().getName()));
         }
         if (typePredicate != null && !typePredicate.test(field.getGenericType())) {
-            fail("Field '%s' does not have correct type".formatted(field.getName()));
+            fail("Field '%s' in class '%s' does not have correct type"
+                .formatted(field.getName(), field.getDeclaringClass().getName())
+                + (typePredicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
         }
         if (fieldName != null) {
-            assertEquals(fieldName, field.getName(),
-                "Name of Field '%s' does not match expected name".formatted(field.getName()));
+            assertEquals(fieldName, field.getName(), "Name of Field '%s' in class '%s' does not match expected name"
+                    .formatted(field.getName(),field.getDeclaringClass().getName()));
         }
     }
 
@@ -313,11 +318,13 @@ public class TutorAssertions extends Assertions {
 
         if (constructors.size() == 0) {
             throw new AssertionFailedError("No constructors in class '%s' matched the provided predicate"
-                .formatted(clazz.getName()));
+                .formatted(clazz.getName())
+                + (predicate instanceof DescriptivePredicate<Constructor<?>> p ? ".\n" + p.getDescription() : ""));
         } else if (constructors.size() != 1) {
             throw new AssertionFailedError(
                 "Multiple constructors in class '%s' matching the provided predicate were found - cannot resolve ambiguity"
-                    .formatted(clazz.getName()));
+                    .formatted(clazz.getName())
+                    + (predicate instanceof DescriptivePredicate<Constructor<?>> p ? ".\n" + p.getDescription() : ""));
         } else {
             return constructors.iterator().next();
         }
@@ -338,17 +345,19 @@ public class TutorAssertions extends Assertions {
 
         if (modifiers != null) {
             assertModifiers(modifiers, constructor.getModifiers(),
-                "Modifiers of constructor don't match the expected ones");
+                "Modifiers of constructor '%s' in class '%s' don't match the expected ones"
+                    .formatted(executableToString(constructor), constructor.getDeclaringClass().getName()));
         }
         if (parameterPredicates != null) {
             assertEquals(parameterPredicates.length,  actualParameterTypes.length,
-                "Constructor with parameters [%s] does not have expected number of parameters"
-                    .formatted(parametersToString(actualParameterTypes))
-            );
+                "Constructor '%s' in class '%s' does not have expected number of parameters"
+                    .formatted(executableToString(constructor), constructor.getDeclaringClass().getName()));
             for (int i = 0; i < parameterPredicates.length; i++) {
-                if (parameterPredicates[i] != null && !parameterPredicates[i].test(actualParameterTypes[i])) {
-                    fail("Parameter #%d for constructor with parameter list [%s] does not match predicate"
-                        .formatted(i + 1, parametersToString(actualParameterTypes)));
+                Predicate<Type> predicate = parameterPredicates[i];
+                if (predicate != null && !predicate.test(actualParameterTypes[i])) {
+                    fail("Parameter at position %d for constructor '%s' in class '%s' does not match predicate"
+                        .formatted(i + 1, executableToString(constructor), constructor.getDeclaringClass().getName())
+                        + (predicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
                 }
             }
         }
@@ -386,10 +395,14 @@ public class TutorAssertions extends Assertions {
             .collect(Collectors.toUnmodifiableSet());
 
         if (filteredMethods.size() == 0) {
-            throw new AssertionFailedError("No methods matching the given predicate were found");
+            throw new AssertionFailedError("No methods matching the given predicate were found in class '%s'"
+                .formatted(clazz.getName())
+                + (predicate instanceof DescriptivePredicate<Method> p ? ".\n" + p.getDescription() : ""));
         } else if (filteredMethods.size() != 1) {
-            throw new AssertionFailedError("Multiple methods matching the given predicate were found"
-                + " - cannot resolve ambiguity");
+            throw new AssertionFailedError(
+                "Multiple methods matching the given predicate were found in class '%s' - cannot resolve ambiguity"
+                    .formatted(clazz.getName())
+                    + (predicate instanceof DescriptivePredicate<Method> p ? ".\n" + p.getDescription() : ""));
         } else {
             return filteredMethods.iterator().next();
         }
@@ -485,16 +498,19 @@ public class TutorAssertions extends Assertions {
         }
         if (returnTypePredicate != null && !returnTypePredicate.test(method.getGenericReturnType())) {
             fail("Method '%s' in class '%s' does not have the correct return type"
-                .formatted(executableToString(method), method.getDeclaringClass().getName()));
+                .formatted(executableToString(method), method.getDeclaringClass().getName())
+                + (returnTypePredicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
         }
         if (parameterPredicates != null) {
             assertEquals(parameterPredicates.length, actualParameterTypes.length,
                 "Method '%s' in class '%s' does not have expected number of parameters"
                     .formatted(executableToString(method), method.getDeclaringClass().getName()));
             for (int i = 0; i < parameterPredicates.length; i++) {
-                if (parameterPredicates[i] != null && !parameterPredicates[i].test(actualParameterTypes[i])) {
+                Predicate<Type> predicate = parameterPredicates[i];
+                if (predicate != null && !predicate.test(actualParameterTypes[i])) {
                     fail("Parameter #%d of Method '%s' in class '%s' does not match given predicate"
-                        .formatted(i + 1, executableToString(method), method.getDeclaringClass().getName()));
+                        .formatted(i + 1, executableToString(method), method.getDeclaringClass().getName())
+                        + (predicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
                 }
             }
             if (methodName != null) {
