@@ -34,6 +34,7 @@ public class DescriptivePredicate<T> implements Predicate<T> {
 
     /**
      * Returns the description, prepended by "Predicate description: ".
+     *
      * @return the description
      */
     public String getDescription() {

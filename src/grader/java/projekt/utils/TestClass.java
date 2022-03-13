@@ -12,7 +12,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -22,12 +26,14 @@ import java.util.stream.Collectors;
 /**
  * A utility class for all test classes to reduce redundancy.
  *
- * This class can not be instantiated directly, but by test classes extending it to perform checks on classes and their
- * members.
- * To instantiate this class, at the very least the name of the class that will be tested is needed. However, this means that
- * the class' members can not be tested through the methods in this class directly. The constructor is overloaded to allow
- * different test cases, e.g., asserting that a class exists and has specific fields. The class member mappings
- * {@link #constructorMap}, {@link #fieldMap} and {@link #methodMap} cannot be changed after instantiation.
+ * <p>
+ *     This class can not be instantiated directly, but by test classes extending it to perform checks on classes and their
+ *     members.
+ *     To instantiate this class, at the very least the name of the class that will be tested is needed. However, this means that
+ *     the class' members can not be tested through the methods in this class directly. The constructor is overloaded to allow
+ *     different test cases, e.g., asserting that a class exists and has specific fields. The class member mappings
+ *     {@link #constructorMap}, {@link #fieldMap} and {@link #methodMap} cannot be changed after instantiation.
+ * </p>
  */
 @SuppressWarnings("unused")
 public class TestClass {
@@ -170,7 +176,7 @@ public class TestClass {
      * @param params      parameters to pass to the constructor when instantiating
      * @return a new instance of the class {@code constructor} belongs to
      * @throws AssertionFailedError if any exception is thrown during the invocation of {@code constructor},
-     * the constructor is not accessible or the class could not be instantiated for any reason
+     *     the constructor is not accessible or the class could not be instantiated for any reason
      */
     public Object newInstance(Constructor<?> constructor, Object... params) {
         try {
@@ -194,7 +200,7 @@ public class TestClass {
      * @param <T>      the return type
      * @return the value returned by invoking {@code method}
      * @throws AssertionFailedError if any exception is thrown during the invocation of {@code method}
-     * or the method is not accessible
+     *     or the method is not accessible
      */
     @SuppressWarnings("unchecked")
     public <T> T invokeMethod(Method method, Object instance, Object... params) {

@@ -52,6 +52,12 @@ public class TutorAssertions extends Assertions {
      * Classes                                        *
      *================================================*/
 
+    /**
+     * Asserts that a class with the fully qualified name {@code className} exists.
+     *
+     * @param className the fully qualified name of a class
+     * @return a {@link Class} object if the class exists
+     */
     public static Class<?> assertClassExists(String className) {
         try {
             return Class.forName(className);
@@ -256,7 +262,7 @@ public class TutorAssertions extends Assertions {
         }
         if (fieldName != null) {
             assertEquals(fieldName, field.getName(), "Name of Field '%s' in class '%s' does not match expected name"
-                    .formatted(field.getName(),field.getDeclaringClass().getName()));
+                    .formatted(field.getName(), field.getDeclaringClass().getName()));
         }
     }
 
