@@ -125,6 +125,15 @@ public class TestClass {
     }
 
     /**
+     * Returns the {@link Class} object of the tested class.
+     *
+     * @return the {@link Class} object
+     */
+    public Class<?> getTestedClass() {
+        return clazz;
+    }
+
+    /**
      * Returns the {@link Constructor} object for a given signature if it has been previously matched during instantiation.
      *
      * @param signature the signature of the constructor
@@ -240,13 +249,13 @@ public class TestClass {
      * @return a predicate matching a method or constructor with the given signature
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    protected static Predicate<? extends Executable> predicateFromSignature(String signature) {
+    protected static <T extends Executable> Predicate<T> predicateFromSignature(String signature) {
         Matcher matcher = Pattern.compile("(?<name>[\\w.]+)\\((?<parameters>.*)\\)").matcher(signature);
         matcher.matches(); // what the hell, Java? Why???
         return t -> t.getName().equals(matcher.group("name"))
             && Arrays.equals(
                 Arrays.stream(t.getGenericParameterTypes()).map(Type::getTypeName).toArray(String[]::new),
-                splitParameters(matcher.group("name"))
+                splitParameters(matcher.group("parameters"))
             );
     }
 
@@ -258,8 +267,8 @@ public class TestClass {
      * @param description the description of this predicate
      * @return a new {@link DescriptivePredicate}
      */
-    protected static DescriptivePredicate<? extends Executable> descriptivePredicateFromSignature(String signature,
-                                                                                                  String description) {
+    protected static <T extends Executable> DescriptivePredicate<T> descriptivePredicateFromSignature(String signature,
+                                                                                                      String description) {
         return new DescriptivePredicate<>(predicateFromSignature(signature), description);
     }
 
@@ -282,7 +291,10 @@ public class TestClass {
                 stringList.getLast().append(c);
             }
         }
-        return stringList.stream().map(sb -> sb.toString().trim().replaceAll(", *", ", ")).toArray(String[]::new);
+        return stringList.stream()
+            .map(sb -> sb.toString().trim().replaceAll(", *", ", "))
+            .filter(s -> !s.isBlank())
+            .toArray(String[]::new);
     }
 
     /**

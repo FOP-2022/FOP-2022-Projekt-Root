@@ -190,7 +190,7 @@ public class TutorAssertions extends Assertions {
             .distinct()
             .filter(field -> field.getName().equals(identifier))
             .findAny()
-            .orElseThrow(fail("No field with identifier '%s' was found".formatted(identifier)));
+            .orElseThrow(() -> new AssertionFailedError("No field with identifier '%s' was found".formatted(identifier)));
     }
 
     /**
@@ -304,9 +304,8 @@ public class TutorAssertions extends Assertions {
         return Stream.concat(Arrays.stream(clazz.getDeclaredConstructors()), Arrays.stream(clazz.getConstructors()))
             .filter(constructor -> executableToString(constructor).equals(signature))
             .findAny()
-            .orElseThrow(
-                fail("Class '%s' does not have a constructor with signature '%s'".formatted(clazz.getName(), signature))
-            );
+            .orElseThrow(() -> new AssertionFailedError("Class '%s' does not have a constructor with signature '%s'"
+                .formatted(clazz.getName(), signature)));
     }
 
     /**
@@ -384,7 +383,8 @@ public class TutorAssertions extends Assertions {
         return Stream.concat(Arrays.stream(clazz.getDeclaredMethods()), Arrays.stream(clazz.getMethods()))
             .filter(method -> executableToString(method).equals(signature))
             .findAny()
-            .orElseThrow(fail("No method with signature '%s' was found in class '%s'".formatted(signature, clazz.getName())));
+            .orElseThrow(() -> new AssertionFailedError(
+                "No method with signature '%s' was found in class '%s'".formatted(signature, clazz.getName())));
     }
 
     /**
