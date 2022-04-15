@@ -41,10 +41,10 @@ public final class TemplateTests {
             super(
                 "projekt.food.Extra",
                 Collections.emptyMap(),
-                Map.of(
-                    METHOD_GET_NAME_SIGNATURE, predicateFromSignature(METHOD_GET_NAME_SIGNATURE),
-                    METHOD_GET_PRIORITY_SIGNATURE, predicateFromSignature(METHOD_GET_PRIORITY_SIGNATURE),
-                    METHOD_APPLY_SIGNATURE, predicateFromSignature(METHOD_APPLY_SIGNATURE)
+                predicatesFromSignatures(
+                    METHOD_GET_NAME_SIGNATURE,
+                    METHOD_GET_PRIORITY_SIGNATURE,
+                    METHOD_APPLY_SIGNATURE
                 )
             );
         }
@@ -85,11 +85,11 @@ public final class TemplateTests {
             super(
                 "projekt.food.Food",
                 Collections.emptyMap(),
-                Map.of(
-                    METHOD_GET_PRICE_SIGNATURE, predicateFromSignature(METHOD_GET_PRICE_SIGNATURE),
-                    METHOD_GET_WEIGHT_SIGNATURE, predicateFromSignature(METHOD_GET_WEIGHT_SIGNATURE),
-                    METHOD_GET_FOOD_VARIANT_SIGNATURE, predicateFromSignature(METHOD_GET_FOOD_VARIANT_SIGNATURE),
-                    METHOD_GET_EXTRAS_SIGNATURE, predicateFromSignature(METHOD_GET_EXTRAS_SIGNATURE)
+                predicatesFromSignatures(
+                    METHOD_GET_PRICE_SIGNATURE,
+                    METHOD_GET_WEIGHT_SIGNATURE,
+                    METHOD_GET_FOOD_VARIANT_SIGNATURE,
+                    METHOD_GET_EXTRAS_SIGNATURE
                 )
             );
         }
@@ -134,11 +134,11 @@ public final class TemplateTests {
                 super(
                     "projekt.food.Food$Config",
                     Collections.emptyMap(),
-                    Map.of(
-                        METHOD_PRICE_SIGNATURE, predicateFromSignature(METHOD_PRICE_SIGNATURE),
-                        METHOD_GET_PRICE_MUTATOR_SIGNATURE, predicateFromSignature(METHOD_GET_PRICE_MUTATOR_SIGNATURE),
-                        METHOD_WEIGHT_SIGNATURE, predicateFromSignature(METHOD_WEIGHT_SIGNATURE),
-                        METHOD_GET_WEIGHT_MUTATOR_SIGNATURE, predicateFromSignature(METHOD_GET_WEIGHT_MUTATOR_SIGNATURE)
+                    predicatesFromSignatures(
+                        METHOD_PRICE_SIGNATURE,
+                        METHOD_GET_PRICE_MUTATOR_SIGNATURE,
+                        METHOD_WEIGHT_SIGNATURE,
+                        METHOD_GET_WEIGHT_MUTATOR_SIGNATURE
                     )
                 );
             }
@@ -184,13 +184,13 @@ public final class TemplateTests {
                 super(
                     "projekt.food.Food$Variant",
                     Collections.emptyMap(),
-                    Map.of(
-                        METHOD_GET_NAME_SIGNATURE, predicateFromSignature(METHOD_GET_NAME_SIGNATURE),
-                        METHOD_GET_FOOD_TYPE_SIGNATURE, predicateFromSignature(METHOD_GET_FOOD_TYPE_SIGNATURE),
-                        METHOD_GET_BASE_PRICE_SIGNATURE, predicateFromSignature(METHOD_GET_BASE_PRICE_SIGNATURE),
-                        METHOD_GET_BASE_WEIGHT_SIGNATURE, predicateFromSignature(METHOD_GET_BASE_WEIGHT_SIGNATURE),
-                        METHOD_CREATE_EMPTY_CONFIG, predicateFromSignature(METHOD_CREATE_EMPTY_CONFIG),
-                        METHOD_CREATE_SIGNATURE, predicateFromSignature(METHOD_CREATE_SIGNATURE)
+                    predicatesFromSignatures(
+                        METHOD_GET_NAME_SIGNATURE,
+                        METHOD_GET_FOOD_TYPE_SIGNATURE,
+                        METHOD_GET_BASE_PRICE_SIGNATURE,
+                        METHOD_GET_BASE_WEIGHT_SIGNATURE,
+                        METHOD_CREATE_EMPTY_CONFIG,
+                        METHOD_CREATE_SIGNATURE
                     )
                 );
             }
@@ -245,11 +245,11 @@ public final class TemplateTests {
             super(
                 "projekt.food.FoodType",
                 Collections.emptyMap(),
-                Map.of(
-                    METHOD_GET_NAME_SIGNATURE, predicateFromSignature(METHOD_GET_NAME_SIGNATURE),
-                    METHOD_GET_COMPATIBLE_EXTRAS_SIGNATURE, predicateFromSignature(METHOD_GET_COMPATIBLE_EXTRAS_SIGNATURE),
-                    METHOD_ADD_FOOD_VARIANT_SIGNATURE, predicateFromSignature(METHOD_ADD_FOOD_VARIANT_SIGNATURE),
-                    METHOD_GET_FOOD_VARIANTS, predicateFromSignature(METHOD_GET_FOOD_VARIANTS)
+                predicatesFromSignatures(
+                    METHOD_GET_NAME_SIGNATURE,
+                    METHOD_GET_COMPATIBLE_EXTRAS_SIGNATURE,
+                    METHOD_ADD_FOOD_VARIANT_SIGNATURE,
+                    METHOD_GET_FOOD_VARIANTS
                 )
             );
         }
