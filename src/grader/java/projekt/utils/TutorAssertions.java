@@ -155,6 +155,7 @@ public class TutorAssertions extends Assertions {
 
     /**
      * Asserts that {@code clazz} implements all interfaces in {@code interfaces}.
+     * {@code clazz} may be an interface itself.
      *
      * @param clazz      the class to assert the implemented interfaces for
      * @param interfaces fully qualified names of the interfaces implemented by {@code clazz}
