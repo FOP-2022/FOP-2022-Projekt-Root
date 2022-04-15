@@ -5,19 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.opentest4j.AssertionFailedError;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Executable;
-import java.lang.reflect.Field;
-import java.lang.reflect.InaccessibleObjectException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
+import java.lang.reflect.*;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Set;
-import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,25 +18,6 @@ import java.util.stream.Stream;
  */
 @SuppressWarnings("unused")
 public class TutorAssertions extends Assertions {
-
-    /**
-     * A mapping of modifiers in {@link Modifier} to their actual name.
-     */
-    private static final Map<Integer, String> MODIFIER_STRING = Map.ofEntries(
-        Map.entry(Modifier.PUBLIC, "PUBLIC"),
-        Map.entry(Modifier.PRIVATE, "PRIVATE"),
-        Map.entry(Modifier.PROTECTED, "PROTECTED"),
-        Map.entry(Modifier.STATIC, "STATIC"),
-        Map.entry(Modifier.FINAL, "FINAL"),
-        Map.entry(Modifier.SYNCHRONIZED, "SYNCHRONIZED"),
-        Map.entry(Modifier.VOLATILE, "VOLATILE"),
-        Map.entry(Modifier.TRANSIENT, "TRANSIENT"),
-        Map.entry(Modifier.NATIVE, "NATIVE"),
-        Map.entry(Modifier.INTERFACE, "INTERFACE"),
-        Map.entry(Modifier.ABSTRACT, "ABSTRACT"),
-        Map.entry(Modifier.STRICT, "STRICT"),
-        Map.entry(0x1000, "SYNTHETIC")
-    );
 
     /*================================================*
      * Classes                                        *
@@ -307,7 +278,7 @@ public class TutorAssertions extends Assertions {
      */
     public static Constructor<?> assertClassHasConstructor(Class<?> clazz, String signature) {
         return Stream.concat(Arrays.stream(clazz.getDeclaredConstructors()), Arrays.stream(clazz.getConstructors()))
-            .filter(constructor -> executableToString(constructor).equals(signature))
+            .filter(constructor -> TypeUtils.executableToString(constructor).equals(signature))
             .findAny()
             .orElseThrow(() -> new AssertionFailedError("Class '%s' does not have a constructor with signature '%s'"
                 .formatted(clazz.getName(), signature)));
@@ -356,17 +327,17 @@ public class TutorAssertions extends Assertions {
         if (modifiers != null) {
             assertModifiers(modifiers, constructor.getModifiers(),
                 "Modifiers of constructor '%s' in class '%s' don't match the expected ones"
-                    .formatted(executableToString(constructor), constructor.getDeclaringClass().getName()));
+                    .formatted(TypeUtils.executableToString(constructor), constructor.getDeclaringClass().getName()));
         }
         if (parameterPredicates != null) {
             assertEquals(parameterPredicates.length,  actualParameterTypes.length,
                 "Constructor '%s' in class '%s' does not have expected number of parameters"
-                    .formatted(executableToString(constructor), constructor.getDeclaringClass().getName()));
+                    .formatted(TypeUtils.executableToString(constructor), constructor.getDeclaringClass().getName()));
             for (int i = 0; i < parameterPredicates.length; i++) {
                 Predicate<Type> predicate = parameterPredicates[i];
                 if (predicate != null && !predicate.test(actualParameterTypes[i])) {
                     fail("Parameter at position %d for constructor '%s' in class '%s' does not match predicate"
-                        .formatted(i + 1, executableToString(constructor), constructor.getDeclaringClass().getName())
+                        .formatted(i + 1, TypeUtils.executableToString(constructor), constructor.getDeclaringClass().getName())
                         + (predicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
                 }
             }
@@ -386,7 +357,7 @@ public class TutorAssertions extends Assertions {
      */
     public static Method assertClassHasMethod(Class<?> clazz, String signature) {
         return Stream.concat(Arrays.stream(clazz.getDeclaredMethods()), Arrays.stream(clazz.getMethods()))
-            .filter(method -> executableToString(method).equals(signature))
+            .filter(method -> TypeUtils.executableToString(method).equals(signature))
             .findAny()
             .orElseThrow(() -> new AssertionFailedError(
                 "No method with signature '%s' was found in class '%s'".formatted(signature, clazz.getName())));
@@ -504,30 +475,30 @@ public class TutorAssertions extends Assertions {
         if (modifiers != null) {
             assertModifiers(modifiers, method.getModifiers(),
                 "Modifiers of method '%s' in class '%s' don't match the expected ones"
-                    .formatted(executableToString(method), method.getDeclaringClass().getName()));
+                    .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()));
 
         }
         if (returnTypePredicate != null && !returnTypePredicate.test(method.getGenericReturnType())) {
             fail("Method '%s' in class '%s' does not have the correct return type"
-                .formatted(executableToString(method), method.getDeclaringClass().getName())
+                .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName())
                 + (returnTypePredicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
         }
         if (parameterPredicates != null) {
             assertEquals(parameterPredicates.length, actualParameterTypes.length,
                 "Method '%s' in class '%s' does not have expected number of parameters"
-                    .formatted(executableToString(method), method.getDeclaringClass().getName()));
+                    .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()));
             for (int i = 0; i < parameterPredicates.length; i++) {
                 Predicate<Type> predicate = parameterPredicates[i];
                 if (predicate != null && !predicate.test(actualParameterTypes[i])) {
                     fail("Parameter #%d of Method '%s' in class '%s' does not match given predicate"
-                        .formatted(i + 1, executableToString(method), method.getDeclaringClass().getName())
+                        .formatted(i + 1, TypeUtils.executableToString(method), method.getDeclaringClass().getName())
                         + (predicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
                 }
             }
             if (methodName != null) {
                 assertEquals(methodName, method.getName(),
                     "Name of Method '%s' in class '%s' does not match expected name"
-                        .formatted(executableToString(method), method.getDeclaringClass().getName()));
+                        .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()));
             }
         }
     }
@@ -546,17 +517,17 @@ public class TutorAssertions extends Assertions {
         try {
             Object result = method.invoke(instance, parameters);
             assertEquals(expected, result, "Actual return value of method '%s' in class '%s' did not match expected value"
-                .formatted(executableToString(method), method.getDeclaringClass().getName()));
+                .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()));
             return result;
         } catch (InaccessibleObjectException e) {
             throw new AssertionFailedError("Could not make method '%s' in class '%s' accessible"
-                .formatted(executableToString(method), method.getDeclaringClass().getName()), e);
+                .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()), e);
         } catch (IllegalAccessException e) {
             throw new AssertionFailedError("Could not access method '%s' in class '%s'"
-                .formatted(executableToString(method), method.getDeclaringClass().getName()), e);
+                .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()), e);
         } catch (InvocationTargetException e) {
             throw new AssertionFailedError("An exception occurred while invoking method '%s' in class '%s'"
-                .formatted(executableToString(method), method.getDeclaringClass().getName()), e);
+                .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()), e);
         }
     }
 
@@ -593,39 +564,8 @@ public class TutorAssertions extends Assertions {
      */
     private static void assertModifiers(int expected, int actual, String exceptionMessage) {
         if (actual != expected) {
-            throw new AssertionFailedError(exceptionMessage, modifiersToString(expected), modifiersToString(actual));
+            throw new AssertionFailedError(exceptionMessage, TypeUtils.modifiersToString(expected), TypeUtils.modifiersToString(actual));
         }
     }
 
-    /**
-     * Extracts all modifiers in {@code modifiers} in human-readable form.
-     *
-     * @param modifiers the modifiers
-     * @return the human-readable modifiers
-     */
-    private static String modifiersToString(int modifiers) {
-        StringJoiner joiner = new StringJoiner(", ");
-
-        for (int i = 0; i < MODIFIER_STRING.size(); i++) {
-            if ((1 << i & modifiers) != 0) {
-                joiner.add(MODIFIER_STRING.get(1 << i));
-            }
-        }
-
-        return joiner.toString();
-    }
-
-    private static String executableToString(Executable executable) {
-        return "%s(%s)".formatted(executable.getName(), parametersToString(executable.getGenericParameterTypes()));
-    }
-
-    /**
-     * Returns the type names of the given types joined together with commas.
-     *
-     * @param parameterTypes an array of types
-     * @return the joined type names
-     */
-    private static String parametersToString(Type... parameterTypes) {
-        return Arrays.stream(parameterTypes).map(Type::getTypeName).collect(Collectors.joining(", "));
-    }
 }

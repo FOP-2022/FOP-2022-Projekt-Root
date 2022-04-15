@@ -3,6 +3,7 @@ package projekt.h1_2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import projekt.utils.TestClass;
+import projekt.utils.TypeUtils;
 
 import java.lang.reflect.Modifier;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class DistanceCalculatorTests extends TestClass {
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_CALCULATE_DISTANCE_SIGNATURE),
-            returnType -> returnType.getTypeName().equals(double.class.getName())
+            TypeUtils.hasType(double.class)
         );
     }
 }

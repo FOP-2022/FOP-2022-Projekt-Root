@@ -2,11 +2,10 @@ package projekt;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import projekt.utils.DescriptivePredicate;
 import projekt.utils.TestClass;
+import projekt.utils.TypeUtils;
 
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
@@ -14,11 +13,7 @@ import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.UnaryOperator;
 
-import static projekt.utils.TutorAssertions.assertClassHasMethod;
-import static projekt.utils.TutorAssertions.assertClassHasModifiers;
-import static projekt.utils.TutorAssertions.assertClassNotGeneric;
-import static projekt.utils.TutorAssertions.assertClassTypeParameters;
-import static projekt.utils.TutorAssertions.assertMethod;
+import static projekt.utils.TutorAssertions.*;
 
 /**
  * Sanity checks for {@link projekt.food.Extra}, {@link projekt.food.Food}, {@link projekt.food.FoodType} and
@@ -62,13 +57,13 @@ public final class TemplateTests {
 
             assertClassHasMethod(clazz, METHOD_GET_NAME_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_NAME_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(String.class.getName()));
+                TypeUtils.hasType(String.class));
             assertClassHasMethod(clazz, METHOD_GET_PRIORITY_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_PRIORITY_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(int.class.getName()));
+                TypeUtils.hasType(int.class));
             assertClassHasMethod(clazz, METHOD_APPLY_SIGNATURE);
             assertMethod(getMethod(METHOD_APPLY_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(void.class.getName()));
+                TypeUtils.hasType(void.class));
         }
     }
 
@@ -107,16 +102,16 @@ public final class TemplateTests {
 
             assertClassHasMethod(clazz, METHOD_GET_PRICE_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_PRICE_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(BigDecimal.class.getName()));
+                TypeUtils.hasType(BigDecimal.class));
             assertClassHasMethod(clazz, METHOD_GET_WEIGHT_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_WEIGHT_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(double.class.getName()));
+                TypeUtils.hasType(double.class));
             assertClassHasMethod(clazz, METHOD_GET_FOOD_VARIANT_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_FOOD_VARIANT_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate("%s<?, ?>".formatted(new VariantSanityCheck().getTestedClass().getName())));
+                TypeUtils.hasType("%s<?, ?>".formatted(new VariantSanityCheck().getTestedClass().getName())));
             assertClassHasMethod(clazz, METHOD_GET_EXTRAS_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_EXTRAS_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate("%s<? extends %s<?>>"
+                TypeUtils.hasType("%s<? extends %s<?>>"
                     .formatted(List.class.getName(), new ExtraSanityCheck().getTestedClass().getName())));
         }
 
@@ -156,16 +151,16 @@ public final class TemplateTests {
 
                 assertClassHasMethod(clazz, METHOD_PRICE_SIGNATURE);
                 assertMethod(getMethod(METHOD_PRICE_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(void.class.getName()));
+                    TypeUtils.hasType(void.class));
                 assertClassHasMethod(clazz, METHOD_GET_PRICE_MUTATOR_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_PRICE_MUTATOR_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate("%s<%s>".formatted(UnaryOperator.class.getName(), BigDecimal.class.getName())));
+                    TypeUtils.hasType("%s<%s>".formatted(UnaryOperator.class.getName(), BigDecimal.class.getName())));
                 assertClassHasMethod(clazz, METHOD_WEIGHT_SIGNATURE);
                 assertMethod(getMethod(METHOD_WEIGHT_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(void.class.getName()));
+                    TypeUtils.hasType(void.class));
                 assertClassHasMethod(clazz, METHOD_GET_WEIGHT_MUTATOR_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_WEIGHT_MUTATOR_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(DoubleUnaryOperator.class.getName()));
+                    TypeUtils.hasType(DoubleUnaryOperator.class));
             }
         }
 
@@ -211,22 +206,22 @@ public final class TemplateTests {
 
                 assertClassHasMethod(clazz, METHOD_GET_NAME_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_NAME_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(String.class.getName()));
+                    TypeUtils.hasType(String.class));
                 assertClassHasMethod(clazz, METHOD_GET_FOOD_TYPE_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_FOOD_TYPE_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate("%s<F, C>".formatted(new FoodTypeSanityCheck().getTestedClass().getName())));
+                    TypeUtils.hasType("%s<F, C>".formatted(new FoodTypeSanityCheck().getTestedClass().getName())));
                 assertClassHasMethod(clazz, METHOD_GET_BASE_PRICE_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_BASE_PRICE_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(BigDecimal.class.getName()));
+                    TypeUtils.hasType(BigDecimal.class));
                 assertClassHasMethod(clazz, METHOD_GET_BASE_WEIGHT_SIGNATURE);
                 assertMethod(getMethod(METHOD_GET_BASE_WEIGHT_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate(double.class.getName()));
+                    TypeUtils.hasType(double.class));
                 assertClassHasMethod(clazz, METHOD_CREATE_EMPTY_CONFIG);
                 assertMethod(getMethod(METHOD_CREATE_EMPTY_CONFIG), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate("C"));
+                    TypeUtils.hasType("C"));
                 assertClassHasMethod(clazz, METHOD_CREATE_SIGNATURE);
                 assertMethod(getMethod(METHOD_CREATE_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                    getReturnTypePredicate("F"));
+                    TypeUtils.hasType("F"));
             }
         }
     }
@@ -270,23 +265,18 @@ public final class TemplateTests {
 
             assertClassHasMethod(clazz, METHOD_GET_NAME_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_NAME_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(String.class.getName()));
+                TypeUtils.hasType(String.class));
             assertClassHasMethod(clazz, METHOD_GET_COMPATIBLE_EXTRAS_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_COMPATIBLE_EXTRAS_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate("%s<? extends %s<? super C>>"
+                TypeUtils.hasType("%s<? extends %s<? super C>>"
                     .formatted(List.class.getName(), new ExtraSanityCheck().getTestedClass().getName())));
             assertClassHasMethod(clazz, METHOD_ADD_FOOD_VARIANT_SIGNATURE);
             assertMethod(getMethod(METHOD_ADD_FOOD_VARIANT_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate(void.class.getName()));
+                TypeUtils.hasType(void.class));
             assertClassHasMethod(clazz, METHOD_GET_FOOD_VARIANTS);
             assertMethod(getMethod(METHOD_GET_FOOD_VARIANTS), Modifier.PUBLIC | Modifier.ABSTRACT,
-                getReturnTypePredicate("%s<? extends %s<F, C>>"
+                TypeUtils.hasType("%s<? extends %s<F, C>>"
                     .formatted(List.class.getName(), new FoodSanityCheck.VariantSanityCheck().getTestedClass().getName())));
         }
-    }
-
-    private static DescriptivePredicate<Type> getReturnTypePredicate(String typeString) {
-        return new DescriptivePredicate<>(returnType -> returnType.getTypeName().equals(typeString),
-            "Return type must be '%s'".formatted(typeString));
     }
 }

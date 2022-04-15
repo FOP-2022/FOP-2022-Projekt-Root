@@ -5,6 +5,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import projekt.utils.TestClass;
+import projekt.utils.TypeUtils;
 
 import java.lang.reflect.*;
 import java.util.Map;
@@ -53,21 +54,21 @@ public class LocationTests extends TestClass {
         assertClassNotGeneric(clazz);
 
         Field x = assertClassHasField(clazz, FIELD_X_IDENTIFIER);
-        assertField(x, Modifier.PRIVATE | Modifier.FINAL, type -> type.getTypeName().equals(int.class.getName()));
+        assertField(x, Modifier.PRIVATE | Modifier.FINAL, TypeUtils.hasType(int.class));
         Field y = assertClassHasField(clazz, FIELD_Y_IDENTIFIER);
-        assertField(y, Modifier.PRIVATE | Modifier.FINAL, type -> type.getTypeName().equals(int.class.getName()));
+        assertField(y, Modifier.PRIVATE | Modifier.FINAL, TypeUtils.hasType(int.class));
 
         Constructor<?> constructor = assertClassHasConstructor(clazz, CONSTRUCTOR_SIGNATURE);
         assertConstructor(constructor, Modifier.PUBLIC, (Predicate<Type>[]) null);
 
         Method getX = assertClassHasMethod(clazz, METHOD_GET_X_SIGNATURE);
-        assertMethod(getX, Modifier.PUBLIC, returnType -> returnType.getTypeName().equals(int.class.getName()));
+        assertMethod(getX, Modifier.PUBLIC, TypeUtils.hasType(int.class));
         Method getY = assertClassHasMethod(clazz, METHOD_GET_Y_SIGNATURE);
-        assertMethod(getY, Modifier.PUBLIC, returnType -> returnType.getTypeName().equals(int.class.getName()));
+        assertMethod(getY, Modifier.PUBLIC, TypeUtils.hasType(int.class));
         Method add = assertClassHasMethod(clazz, METHOD_ADD_SIGNATURE);
-        assertMethod(add, Modifier.PUBLIC, returnType -> returnType.getTypeName().equals(className));
+        assertMethod(add, Modifier.PUBLIC, TypeUtils.hasType(className));
         Method subtract = assertClassHasMethod(clazz, METHOD_SUBTRACT_SIGNATURE);
-        assertMethod(subtract, Modifier.PUBLIC, returnType -> returnType.getTypeName().equals(className));
+        assertMethod(subtract, Modifier.PUBLIC, TypeUtils.hasType(className));
     }
 
     @Test
