@@ -34,16 +34,16 @@ public class LocationTests extends TestClass {
     public LocationTests() {
         super(
             "projekt.base.Location",
-            Map.of(CONSTRUCTOR_SIGNATURE, predicateFromSignature(CONSTRUCTOR_SIGNATURE)),
+            predicatesFromSignatures(CONSTRUCTOR_SIGNATURE),
             Map.of(
                 FIELD_X_IDENTIFIER, field -> field.getName().equals(FIELD_X_IDENTIFIER),
                 FIELD_Y_IDENTIFIER, field -> field.getName().equals(FIELD_Y_IDENTIFIER)
             ),
-            Map.of(
-                METHOD_GET_X_SIGNATURE, predicateFromSignature(METHOD_GET_X_SIGNATURE),
-                METHOD_GET_Y_SIGNATURE, predicateFromSignature(METHOD_GET_Y_SIGNATURE),
-                METHOD_ADD_SIGNATURE, predicateFromSignature(METHOD_ADD_SIGNATURE),
-                METHOD_SUBTRACT_SIGNATURE, predicateFromSignature(METHOD_SUBTRACT_SIGNATURE)
+            predicatesFromSignatures(
+                METHOD_GET_X_SIGNATURE,
+                METHOD_GET_Y_SIGNATURE,
+                METHOD_ADD_SIGNATURE,
+                METHOD_SUBTRACT_SIGNATURE
             )
         );
     }

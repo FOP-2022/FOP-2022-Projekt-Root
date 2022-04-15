@@ -260,6 +260,21 @@ public class TestClass {
     }
 
     /**
+     * Creates a {@link Map} of {@link Predicate}s from a given signatures that matches
+     * the name and generic parameters of an {@link Executable}.
+     *
+     * @param signatures the signatures of the constructors or methods
+     * @return A map of predicates
+     */
+    protected static <T extends Executable> Map<String, Predicate<T>> predicatesFromSignatures(String... signatures) {
+        return Arrays.stream(signatures)
+            .collect(Collectors.toMap(
+                Function.identity(),
+                TestClass::predicateFromSignature
+            ));
+    }
+
+    /**
      * Creates a descriptive predicate from a given signature that matches the name and generic parameters of an
      * {@link Executable}. The description can be retrieved using {@link DescriptivePredicate#getDescription()}.
      *

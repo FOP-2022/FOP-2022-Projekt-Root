@@ -23,7 +23,7 @@ public class DistanceCalculatorTests extends TestClass {
         super(
             "projekt.base.DistanceCalculator",
             Collections.emptyMap(),
-            Map.of(METHOD_CALCULATE_DISTANCE_SIGNATURE, predicateFromSignature(METHOD_CALCULATE_DISTANCE_SIGNATURE))
+            predicatesFromSignatures(METHOD_CALCULATE_DISTANCE_SIGNATURE)
         );
     }
 

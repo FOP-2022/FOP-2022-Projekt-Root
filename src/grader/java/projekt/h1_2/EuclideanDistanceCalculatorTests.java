@@ -25,8 +25,8 @@ public class EuclideanDistanceCalculatorTests extends TestClass {
     public EuclideanDistanceCalculatorTests() {
         super(
             "projekt.base.EuclideanDistanceCalculator",
-            Map.of(CONSTRUCTOR_SIGNATURE, predicateFromSignature(CONSTRUCTOR_SIGNATURE)),
-            Map.of(METHOD_CALCULATE_DISTANCE_SIGNATURE, predicateFromSignature(METHOD_CALCULATE_DISTANCE_SIGNATURE))
+            predicatesFromSignatures(CONSTRUCTOR_SIGNATURE),
+            predicatesFromSignatures(METHOD_CALCULATE_DISTANCE_SIGNATURE)
         );
     }
 

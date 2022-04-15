@@ -9,21 +9,21 @@ import projekt.utils.TypeUtils;
 
 import java.lang.reflect.Modifier;
 import java.util.Collections;
-import java.util.Map;
 
 import static projekt.utils.TutorAssertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class SaucableTest extends TestClass {
 
+    public static final String CLASS_NAME = "projekt.food.Saucable";
     public static final String METHOD_GET_SAUCE_SIGNATURE = "getSauce()";
-    public static final String FOOD_CLASS = "projekt.food.Food";
+    public static final String FOOD_CLASS = "projekt.food.Food"; // TODO: Use move class name to appropriate test
 
     public SaucableTest() {
         super(
-            "projekt.food.Saucable",
+            CLASS_NAME,
             Collections.emptyMap(),
-            Map.of(METHOD_GET_SAUCE_SIGNATURE, predicateFromSignature(METHOD_GET_SAUCE_SIGNATURE))
+            predicatesFromSignatures(METHOD_GET_SAUCE_SIGNATURE)
         );
     }
 
