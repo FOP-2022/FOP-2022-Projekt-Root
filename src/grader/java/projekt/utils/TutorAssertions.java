@@ -148,7 +148,11 @@ public class TutorAssertions extends Assertions {
      * @param superclass fully qualified name of the superclass
      */
     public static void assertClassExtends(Class<?> clazz, String superclass) {
-        if (!superclass.equals(clazz.getGenericSuperclass().getTypeName())) {
+        var actualSuperClass = clazz.getGenericSuperclass();
+        assertNotNull(actualSuperClass,
+            "Class does not extend any other class - is it an interface, or java.lang.Object.class?");
+
+        if (!superclass.equals(actualSuperClass.getTypeName())) {
             fail("Superclass of class '%s' does not match given superclass".formatted(clazz.getSimpleName()));
         }
     }
