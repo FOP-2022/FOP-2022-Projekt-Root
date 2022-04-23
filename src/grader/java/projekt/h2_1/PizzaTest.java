@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
@@ -16,13 +17,12 @@ import static projekt.utils.TutorAssertions.assertClassHasMethod;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class PizzaTest extends TestClass {
 
-    public static final String CLASS_NAME = "projekt.food.Pizza";
     public static final String METHOD_GET_DIAMETER_SIGNATURE = "getDiameter()";
 
 
     public PizzaTest() {
         super(
-            CLASS_NAME,
+            ClassName.PIZZA,
             Collections.emptyMap(),
             predicatesFromSignatures(METHOD_GET_DIAMETER_SIGNATURE)
         );
@@ -32,7 +32,7 @@ public class PizzaTest extends TestClass {
     @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-        assertClassImplements(clazz, SaucableTest.CLASS_NAME);
+        assertClassImplements(clazz, ClassName.SAUCABLE);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_DIAMETER_SIGNATURE),

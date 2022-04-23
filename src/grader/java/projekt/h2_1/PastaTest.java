@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
@@ -15,12 +16,11 @@ import static projekt.utils.TutorAssertions.*;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class PastaTest extends TestClass {
 
-    public static final String CLASS_NAME = "projekt.food.Pasta";
     public static final String METHOD_GET_THICKNESS_SIGNATURE = "getThickness()";
 
     public PastaTest() {
         super(
-            CLASS_NAME,
+            ClassName.PASTA,
             Collections.emptyMap(),
             predicatesFromSignatures(METHOD_GET_THICKNESS_SIGNATURE)
         );
@@ -30,7 +30,7 @@ public class PastaTest extends TestClass {
     @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-        assertClassImplements(clazz, SaucableTest.CLASS_NAME);
+        assertClassImplements(clazz, ClassName.SAUCABLE);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_THICKNESS_SIGNATURE),

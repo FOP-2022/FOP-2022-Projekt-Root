@@ -38,7 +38,7 @@ public class TypeUtils {
      * @param modifiers the modifiers
      * @return the human-readable modifiers
      */
-    static String modifiersToString(int modifiers) {
+    public static String modifiersToString(int modifiers) {
         StringJoiner joiner = new StringJoiner(", ");
 
         for (int i = 0; i < MODIFIER_STRING.size(); i++) {
@@ -50,7 +50,7 @@ public class TypeUtils {
         return joiner.toString();
     }
 
-    static String executableToString(Executable executable) {
+    public static String executableToString(Executable executable) {
         return "%s(%s)".formatted(executable.getName(), parametersToString(executable.getGenericParameterTypes()));
     }
 

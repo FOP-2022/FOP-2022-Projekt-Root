@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
@@ -15,12 +16,11 @@ import static projekt.utils.TutorAssertions.*;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class IceCreamTest extends TestClass {
 
-    public static final String CLASS_NAME = "projekt.food.IceCream";
     public static final String METHOD_GET_FLAVOR_SIGNATURE = "getFlavor()";
 
     public IceCreamTest() {
         super(
-            CLASS_NAME,
+            ClassName.ICE_CREAM,
             Collections.emptyMap(),
             predicatesFromSignatures(METHOD_GET_FLAVOR_SIGNATURE)
         );
