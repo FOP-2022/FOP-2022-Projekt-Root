@@ -30,7 +30,7 @@ public class IceCreamTest extends TestClass {
     @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-        assertClassImplements(clazz, SaucableTest.FOOD_CLASS);
+        assertClassImplements(clazz, ClassName.FOOD);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_FLAVOR_SIGNATURE),
