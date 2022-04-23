@@ -15,20 +15,20 @@ import java.util.function.DoubleUnaryOperator;
 import static projekt.utils.TutorAssertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-public class PizzaConfigTest extends TestClass {
+public class PastaConfigTest extends TestClass {
 
-    public static final String METHOD_DIAMETER_SIGNATURE = "diameter(%s)"
+    public static final String METHOD_THICKNESS_SIGNATURE = "thickness(%s)"
         .formatted(ClassName.DOUBLE_UNARY_OPERATOR);
 
-    public static final String METHOD_GET_DIAMETER_MUTATOR_SIGNATURE = "getDiameterMutator()";
+    public static final String METHOD_GET_THICKNESS_MUTATOR_SIGNATURE = "getThicknessMutator()";
 
-    public PizzaConfigTest() {
+    public PastaConfigTest() {
         super(
-            ClassName.PIZZA_CONFIG,
+            ClassName.PASTA_CONFIG,
             Collections.emptyMap(),
             predicatesFromSignatures(
-                METHOD_DIAMETER_SIGNATURE,
-                METHOD_GET_DIAMETER_MUTATOR_SIGNATURE)
+                METHOD_THICKNESS_SIGNATURE,
+                METHOD_GET_THICKNESS_MUTATOR_SIGNATURE)
         );
     }
 
@@ -39,11 +39,11 @@ public class PizzaConfigTest extends TestClass {
         assertClassImplements(clazz, ClassName.SAUCABLE_CONFIG);
 
         assertMethod(
-            assertClassHasMethod(clazz, METHOD_DIAMETER_SIGNATURE),
+            assertClassHasMethod(clazz, METHOD_THICKNESS_SIGNATURE),
             TypeUtils.hasType(void.class)
         );
         assertMethod(
-            assertClassHasMethod(clazz, METHOD_GET_DIAMETER_MUTATOR_SIGNATURE),
+            assertClassHasMethod(clazz, METHOD_GET_THICKNESS_MUTATOR_SIGNATURE),
             TypeUtils.hasType(DoubleUnaryOperator.class)
         );
     }
