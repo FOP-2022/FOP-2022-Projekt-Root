@@ -19,7 +19,6 @@ public class PizzaTest extends TestClass {
 
     public static final String METHOD_GET_DIAMETER_SIGNATURE = "getDiameter()";
 
-
     public PizzaTest() {
         super(
             ClassName.PIZZA,

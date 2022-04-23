@@ -17,7 +17,6 @@ import static projekt.utils.TutorAssertions.*;
 public class SaucableTest extends TestClass {
 
     public static final String METHOD_GET_SAUCE_SIGNATURE = "getSauce()";
-    public static final String FOOD_CLASS = "projekt.food.Food"; // TODO: Use move class name to appropriate test
 
     public SaucableTest() {
         super(
@@ -31,7 +30,7 @@ public class SaucableTest extends TestClass {
     @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-        assertClassImplements(clazz, FOOD_CLASS);
+        assertClassImplements(clazz, ClassName.FOOD);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_SAUCE_SIGNATURE),
