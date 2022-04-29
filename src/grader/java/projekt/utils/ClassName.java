@@ -8,6 +8,7 @@ public class ClassName {
     public static final String DISTANCE_CALCULATOR = "projekt.base.DistanceCalculator";
     public static final String FOOD = "projekt.food.Food";
     public static final String FOOD_CONFIG = "projekt.food.Food$Config";
+    public static final String FOOD_VARIANT = "projekt.food.Food$Variant";
     public static final String ICE_CREAM = "projekt.food.IceCream";
     public static final String ICE_CREAM_CONFIG = "projekt.food.IceCream$Config";
     public static final String LOCATION = "projekt.base.Location";
@@ -17,6 +18,7 @@ public class ClassName {
     public static final String PIZZA_CONFIG = "projekt.food.Pizza$Config";
     public static final String SAUCABLE = "projekt.food.Saucable";
     public static final String SAUCABLE_CONFIG = "projekt.food.Saucable$Config";
+    public static final String SAUCABLE_VARIANT = "projekt.food.Saucable$Variant";
 
     private ClassName() {}
 }

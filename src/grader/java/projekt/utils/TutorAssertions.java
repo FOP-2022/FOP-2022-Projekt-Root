@@ -137,7 +137,7 @@ public class TutorAssertions extends Assertions {
      */
     public static void assertClassImplements(Class<?> clazz, String... interfaces) {
         Set<String> actualInterfaceTypes = Arrays.stream(clazz.getGenericInterfaces())
-            .map(Type::getTypeName)
+            .map(TutorAssertions::getTypeName)
             .collect(Collectors.toUnmodifiableSet());
 
         Arrays.stream(interfaces)
@@ -148,6 +148,12 @@ public class TutorAssertions extends Assertions {
                 .orElseThrow(() -> new AssertionFailedError(
                     "Class '%s' does not implement interface '%s'".formatted(clazz.getName(), typeName)
                 )));
+    }
+
+    private static String getTypeName(Type type) {
+        var name = type.getTypeName();
+        var split = name.split("\\s*<\\s*", 2);
+        return split[0];
     }
 
     /*================================================*
@@ -568,4 +574,31 @@ public class TutorAssertions extends Assertions {
         }
     }
 
+    /**
+     * Assert that the given {@link Class} has the given type parameters.
+     * Each parameter is represented by a {@link Set} denoting the bounds for the parameter.
+     *
+     * For instance {@code T extends Number & Config} would be {@code Set.of("java.lang.Number", "de.oshgnacknak.Config")}.
+     *
+     * @param clazz {@link Class} that must have type parameters
+     * @param parameterBounds One {@link Set} for each parameter denoting its bounds.
+     */
+    @SafeVarargs
+    public static void assertClassHasTypeParameters(Class<?> clazz, Set<String>... parameterBounds) {
+        var parameters = clazz.getTypeParameters();
+        assertEquals(parameterBounds.length, parameters.length,
+            "Class %s has the wrong number of type arguments".formatted(clazz));
+
+        for (int i = 0; i < parameters.length; i++) {
+            assertBoundsEqual(parameterBounds[i], parameters[i]);
+        }
+    }
+
+    private static void assertBoundsEqual(Set<String> expected, TypeVariable<? extends Class<?>> parameter) {
+        var bounds = Arrays
+            .stream(parameter.getBounds())
+            .map(TutorAssertions::getTypeName)
+            .collect(Collectors.toSet());
+        assertEquals(expected, bounds);
+    }
 }
