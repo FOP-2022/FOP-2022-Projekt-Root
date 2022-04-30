@@ -16,6 +16,7 @@ public class ClassName {
     public static final String PASTA_CONFIG = "projekt.food.Pasta$Config";
     public static final String PIZZA = "projekt.food.Pizza";
     public static final String PIZZA_CONFIG = "projekt.food.Pizza$Config";
+    public static final String PIZZA_VARIANT = "projekt.food.Pizza$Variant";
     public static final String SAUCABLE = "projekt.food.Saucable";
     public static final String SAUCABLE_CONFIG = "projekt.food.Saucable$Config";
     public static final String SAUCABLE_VARIANT = "projekt.food.Saucable$Variant";

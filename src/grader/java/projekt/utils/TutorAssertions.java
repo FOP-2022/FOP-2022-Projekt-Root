@@ -599,6 +599,7 @@ public class TutorAssertions extends Assertions {
             .stream(parameter.getBounds())
             .map(TutorAssertions::getTypeName)
             .collect(Collectors.toSet());
-        assertEquals(expected, bounds);
+        assertEquals(expected, bounds,
+            "Bounds for parameter %s do not match".formatted(parameter));
     }
 }
