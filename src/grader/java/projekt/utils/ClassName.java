@@ -11,6 +11,7 @@ public class ClassName {
     public static final String FOOD_VARIANT = "projekt.food.Food$Variant";
     public static final String ICE_CREAM = "projekt.food.IceCream";
     public static final String ICE_CREAM_CONFIG = "projekt.food.IceCream$Config";
+    public static final String ICE_CREAM_VARIANT = "projekt.food.IceCream$Variant";
     public static final String LOCATION = "projekt.base.Location";
     public static final String PASTA = "projekt.food.Pasta";
     public static final String PASTA_CONFIG = "projekt.food.Pasta$Config";
