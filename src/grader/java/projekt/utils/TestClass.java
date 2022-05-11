@@ -1,6 +1,7 @@
 package projekt.utils;
 
 import kotlin.Pair;
+import org.jetbrains.annotations.NotNull;
 import org.opentest4j.AssertionFailedError;
 import org.opentest4j.TestAbortedException;
 
@@ -271,6 +272,18 @@ public class TestClass {
             .collect(Collectors.toMap(
                 Function.identity(),
                 TestClass::predicateFromSignature
+            ));
+    }
+
+    protected static Predicate<Field> predicateFromIdentifier(String identifier) {
+        return field -> field.getName().equals(identifier);
+    }
+
+    protected static Map<String, Predicate<Field>> predicateFromIdentifiers(String... identifiers) {
+        return Arrays.stream(identifiers)
+            .collect(Collectors.toMap(
+                Function.identity(),
+                TestClass::predicateFromIdentifier
             ));
     }
 
