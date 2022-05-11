@@ -8,7 +8,6 @@ import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
 import java.lang.reflect.*;
-import java.util.Map;
 import java.util.function.Predicate;
 
 import static projekt.utils.TutorAssertions.*;
@@ -35,9 +34,9 @@ public class LocationTests extends TestClass {
         super(
             "projekt.base.Location",
             predicatesFromSignatures(CONSTRUCTOR_SIGNATURE),
-            Map.of(
-                FIELD_X_IDENTIFIER, field -> field.getName().equals(FIELD_X_IDENTIFIER),
-                FIELD_Y_IDENTIFIER, field -> field.getName().equals(FIELD_Y_IDENTIFIER)
+            predicateFromIdentifiers(
+                FIELD_X_IDENTIFIER,
+                FIELD_Y_IDENTIFIER
             ),
             predicatesFromSignatures(
                 METHOD_GET_X_SIGNATURE,
