@@ -2,17 +2,17 @@ package projekt.spec;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import projekt.spec.ClassSpec;
-import projekt.spec.FieldSpec;
 
 import java.util.stream.Stream;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ClassSpecTestCase {
 
-    protected final static ClassSpec spec = new ClassSpec();
+    protected final ClassSpec spec = new ClassSpec();
 
     @BeforeEach
     void findClass() {
@@ -30,7 +30,7 @@ public abstract class ClassSpecTestCase {
         spec.assertField();
     }
 
-    static Stream<Arguments> provideForTestFields() {
+    Stream<Arguments> provideForTestFields() {
         return spec.provideFieldSpecs();
     }
 }
