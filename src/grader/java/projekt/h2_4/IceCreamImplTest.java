@@ -1,39 +1,22 @@
 package projekt.h2_4;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 import projekt.utils.ClassName;
-import projekt.utils.TestClass;
-import projekt.utils.TypeUtils;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Map;
-
-import static projekt.utils.TutorAssertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-public class IceCreamImplTest extends TestClass {
+public class IceCreamImplTest extends AbstractFoodImpTest {
 
-    public static final String FIELD_FLAVOR_IDENTIFIER = "flavor";
+    @BeforeAll
+    static void setup() {
+        spec.requireClass(ClassName.ICE_CREAM_IMPL)
+            .requireImplementing(ClassName.ICE_CREAM);
 
-    protected IceCreamImplTest() {
-        super(
-            ClassName.ICE_CREAM_IMPL,
-            Map.of(),
-            predicateFromIdentifiers(
-                FIELD_FLAVOR_IDENTIFIER
-            ),
-            Map.of()
-        );
-    }
-
-    @Test
-    @DisplayName("Interface and methods")
-    public void testDefinition() {
-        assertClassNotGeneric(clazz);
-        assertClassImplements(clazz, ClassName.ICE_CREAM);
-
-        Field flavor = assertClassHasField(clazz, FIELD_FLAVOR_IDENTIFIER);
-        assertField(flavor, Modifier.PRIVATE | Modifier.FINAL, TypeUtils.hasType(String.class));
+        spec.requireField("flavor")
+            .requireType(String.class)
+            .requireModifiers(Modifier.PRIVATE | Modifier.FINAL);
     }
 }
