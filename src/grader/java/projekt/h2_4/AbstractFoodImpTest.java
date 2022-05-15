@@ -1,6 +1,5 @@
 package projekt.h2_4;
 
-import org.junit.jupiter.api.BeforeAll;
 import projekt.food.Food;
 import projekt.spec.ClassSpecTestCase;
 
@@ -10,8 +9,7 @@ import java.util.List;
 
 public abstract class AbstractFoodImpTest extends ClassSpecTestCase {
 
-    @BeforeAll
-    static void setupForFood() {
+    AbstractFoodImpTest() {
         spec.requireField("price")
             .requireType(BigDecimal.class)
             .requireModifiers(Modifier.PRIVATE | Modifier.FINAL);

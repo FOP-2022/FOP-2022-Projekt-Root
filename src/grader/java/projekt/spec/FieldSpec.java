@@ -28,11 +28,6 @@ public class FieldSpec {
         return this;
     }
 
-    public FieldSpec requireType(String expectedType) {
-        typePredicate = TypeUtils.hasType(expectedType);
-        return this;
-    }
-
     public FieldSpec requireModifiers(int modifiers) {
         this.modifiers = modifiers;
         return this;
