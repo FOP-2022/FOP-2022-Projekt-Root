@@ -258,7 +258,7 @@ public class TutorAssertions extends Assertions {
                 "Modifiers of field '%s' in class '%s' don't match the expected ones"
                     .formatted(field.getName(), field.getDeclaringClass().getName()));
         }
-        if (typePredicate != null && !typePredicate.test(field.getGenericType())) {
+        if (typePredicate != null && !typePredicate.test(field.getType())) {
             fail("Field '%s' in class '%s' does not have correct type"
                 .formatted(field.getName(), field.getDeclaringClass().getName())
                 + (typePredicate instanceof DescriptivePredicate<Type> p ? ".\n" + p.getDescription() : ""));
