@@ -168,11 +168,28 @@ public class TutorAssertions extends Assertions {
      * @return the {@link Field}, if it exists
      */
     public static Field assertClassHasField(Class<?> clazz, String identifier) {
-        return Stream.concat(Arrays.stream(clazz.getDeclaredFields()), Arrays.stream(clazz.getFields()))
+        return getAllFields(clazz)
             .distinct()
-            .filter(field -> field.getName().equals(identifier))
+            .filter(field ->
+                field.getName().equals(identifier))
             .findAny()
-            .orElseThrow(() -> new AssertionFailedError("No field with identifier '%s' was found".formatted(identifier)));
+            .orElseThrow(() ->
+                new AssertionFailedError("No field with identifier '%s' was found".formatted(identifier)));
+    }
+
+    private static Stream<Field> getAllFields(Class<?> clazz) {
+        var fields = Stream.concat(
+            Arrays.stream(clazz.getDeclaredFields()),
+            Arrays.stream(clazz.getFields()));
+
+        var superClass = clazz.getSuperclass();
+        if (superClass != null) {
+            return Stream.concat(
+                getAllFields(superClass),
+                fields);
+        }
+
+        return fields;
     }
 
     /**
