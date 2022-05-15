@@ -31,7 +31,7 @@ public class PizzaImplTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
+    @DisplayName("Class, fields and methods")
     public void testDefinition() {
         assertClassNotGeneric(clazz);
         assertClassImplements(clazz, ClassName.PIZZA);
