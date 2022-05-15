@@ -136,11 +136,15 @@ public class TutorAssertions extends Assertions {
      * @param interfaces fully qualified names of the interfaces implemented by {@code clazz}
      */
     public static void assertClassImplements(Class<?> clazz, String... interfaces) {
+        assertClassImplements(clazz, Arrays.stream(interfaces));
+    }
+
+    public static void assertClassImplements(Class<?> clazz, Stream<String> interfaces) {
         Set<String> actualInterfaceTypes = Arrays.stream(clazz.getGenericInterfaces())
             .map(TutorAssertions::getTypeName)
             .collect(Collectors.toUnmodifiableSet());
 
-        Arrays.stream(interfaces)
+        interfaces
             .forEach(typeName -> actualInterfaceTypes
                 .stream()
                 .filter(typeName::equals)
