@@ -8,7 +8,7 @@ public class PizzaImplTest extends AbstractFoodImpTest {
 
    PizzaImplTest() {
         spec.requireClass(ClassName.PIZZA_IMPL)
-            .requireImplementing(ClassName.PIZZA);
+            .requireImplements(ClassName.PIZZA);
 
         spec.requireField("diameter")
             .requireType(double.class)

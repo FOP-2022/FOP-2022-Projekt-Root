@@ -8,7 +8,7 @@ public class PastaImplTest extends AbstractFoodImpTest {
 
     PastaImplTest() {
         spec.requireClass(ClassName.PASTA_IMPL)
-            .requireImplementing(ClassName.PASTA);
+            .requireImplements(ClassName.PASTA);
 
         spec.requireField("thickness")
             .requireType(double.class)

@@ -23,7 +23,7 @@ public class ClassSpec {
         return this;
     }
 
-    public ClassSpec requireImplementing(String interfaceName) {
+    public ClassSpec requireImplements(String interfaceName) {
         interfacesToImplement.add(interfaceName);
         return this;
     }
@@ -47,7 +47,7 @@ public class ClassSpec {
         var testers = fieldSpecs.isEmpty()
             ? Stream.of(new EmptyFieldTester())
             : fieldSpecs.stream()
-                .map(FieldSpec::getAsserter);
+                .map(FieldSpec::getTester);
 
         return testers.map(Arguments::of);
     }

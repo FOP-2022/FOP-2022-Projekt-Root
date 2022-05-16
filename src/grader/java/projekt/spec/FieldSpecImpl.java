@@ -36,7 +36,7 @@ public class FieldSpecImpl implements FieldSpec {
     }
 
     @Override
-    public FieldTester getAsserter() {
+    public FieldTester getTester() {
         return new FieldTester() {
             @Override
             public void testField() {
