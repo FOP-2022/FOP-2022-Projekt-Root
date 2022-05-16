@@ -29,7 +29,7 @@ public class ClassSpec {
     }
 
     public FieldSpec requireField(String name) {
-        var spec = new FieldSpec(this, name);
+        var spec = new FieldSpecImpl(this, name);
         fieldSpecs.add(spec);
         return spec;
     }
@@ -44,9 +44,12 @@ public class ClassSpec {
     }
 
     public Stream<Arguments> provideFieldSpecs() {
-        return fieldSpecs
-            .stream()
-            .map(Arguments::of);
+        var testers = fieldSpecs.isEmpty()
+            ? Stream.of(new EmptyFieldTester())
+            : fieldSpecs.stream()
+                .map(FieldSpec::getAsserter);
+
+        return testers.map(Arguments::of);
     }
 
     public void assertClass() {

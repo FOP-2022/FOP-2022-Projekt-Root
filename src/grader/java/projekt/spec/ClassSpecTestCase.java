@@ -26,8 +26,8 @@ public abstract class ClassSpecTestCase {
 
     @ParameterizedTest
     @MethodSource("provideForTestFields")
-    void testFields(FieldSpec spec) {
-        spec.assertField();
+    void testFields(FieldTester tester) {
+        tester.testField();
     }
 
     Stream<Arguments> provideForTestFields() {
