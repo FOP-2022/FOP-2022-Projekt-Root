@@ -4,12 +4,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import projekt.utils.ReflectUtils;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
 import java.lang.reflect.*;
+import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static projekt.utils.TutorAssertions.*;
 
@@ -48,6 +52,12 @@ public class LocationTests extends TestClass {
         );
     }
 
+    public static Stream<Arguments> provideConstructorParameters() {
+        return Arrays
+            .stream( INSTANTIATION_PARAMETERS)
+            .map(Arguments::of);
+    }
+
     @Test
     @DisplayName("1 | Class, fields, constructor and methods")
     public void testDefinition() {
@@ -71,16 +81,34 @@ public class LocationTests extends TestClass {
         assertMethod(subtract, Modifier.PUBLIC, TypeUtils.hasType(className));
     }
 
-    @Test
-    @DisplayName("2 | Instance")
-    public void testInstance() {
-        for (Object[] parameters : INSTANTIATION_PARAMETERS) {
-            Object instance = newInstance(getConstructor(CONSTRUCTOR_SIGNATURE), parameters);
 
-            assertEquals(parameters[0], getFieldValue(getField(FIELD_X_IDENTIFIER), instance),
-                "Field 'x' in class %s does not have the same value as first parameter of constructor".formatted(className));
-            assertEquals(parameters[1], getFieldValue(getField(FIELD_Y_IDENTIFIER), instance),
-                "Field 'y' in class %s does not have the same value as second parameter of constructor".formatted(className));
-        }
+    @DisplayName("2 | Instance")
+    @ParameterizedTest
+    @MethodSource("provideConstructorParameters")
+    public void testInstance(Integer x, Integer y) {
+        Object instance = newInstance(x, y);
+
+        assertEquals(x, getFieldValue(getField(FIELD_X_IDENTIFIER), instance),
+            "Field 'x' in class %s does not have the same value as first parameter of constructor".formatted(className));
+
+        assertEquals(y, getFieldValue(getField(FIELD_Y_IDENTIFIER), instance),
+            "Field 'y' in class %s does not have the same value as second parameter of constructor".formatted(className));
+    }
+
+    private Object newInstance(Integer x, Integer y) {
+        return newInstance(getConstructor(CONSTRUCTOR_SIGNATURE), x, y);
+    }
+
+    @DisplayName("3 | getX()")
+    @ParameterizedTest
+    @MethodSource("provideConstructorParameters")
+    public void testGetters(Integer x, Integer y) {
+        Object instance = newInstance(x, y);
+
+        assertEquals(x, invokeMethod(getMethod(METHOD_GET_X_SIGNATURE), instance),
+            "Method 'getX' in class %s did not return the same value as first parameter of constructor".formatted(className));
+
+        assertEquals(y, invokeMethod(getMethod(METHOD_GET_Y_SIGNATURE), instance),
+            "Method 'getY' in class %s did not return the same value as second parameter of constructor".formatted(className));
     }
 }
