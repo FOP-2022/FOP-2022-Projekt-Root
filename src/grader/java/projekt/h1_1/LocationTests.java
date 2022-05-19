@@ -99,7 +99,7 @@ public class LocationTests extends TestClass {
         return newInstance(getConstructor(CONSTRUCTOR_SIGNATURE), x, y);
     }
 
-    @DisplayName("3 | getX()")
+    @DisplayName("3 | getX() and getY()")
     @ParameterizedTest
     @MethodSource("provideConstructorParameters")
     public void testGetters(Integer x, Integer y) {
@@ -110,5 +110,40 @@ public class LocationTests extends TestClass {
 
         assertEquals(y, invokeMethod(getMethod(METHOD_GET_Y_SIGNATURE), instance),
             "Method 'getY' in class %s did not return the same value as second parameter of constructor".formatted(className));
+    }
+
+    @DisplayName("4 | add()")
+    @ParameterizedTest
+    @MethodSource("provideConstructorParameters")
+    public void testAdd(Integer x, Integer y) {
+        Object a = newInstance(x, y);
+        Object b = newInstance(y, x);
+
+        Object sum = invokeMethod(getMethod(METHOD_ADD_SIGNATURE), a, b);
+        Object expected = x + y;
+
+        assertEquals(expected, getFieldValue(getField(FIELD_X_IDENTIFIER), sum),
+            "Field 'x' in class %s does not have the same value the expected sum".formatted(className));
+
+        assertEquals(expected, getFieldValue(getField(FIELD_Y_IDENTIFIER), sum),
+            "Field 'y' in class %s does not have the same value the expected sum".formatted(className));
+    }
+
+    @DisplayName("4 | add()")
+    @ParameterizedTest
+    @MethodSource("provideConstructorParameters")
+    public void testSub(Integer x, Integer y) {
+        Object a = newInstance(x, y);
+        Object b = newInstance(y, x);
+
+        Object difference = invokeMethod(getMethod(METHOD_SUBTRACT_SIGNATURE), a, b);
+
+        Object expectedX = x - y;
+        assertEquals(expectedX, getFieldValue(getField(FIELD_X_IDENTIFIER), difference),
+            "Field 'x' in class %s does not have the same value the expected difference".formatted(className));
+
+        Object expectedY = y - x;
+        assertEquals(expectedY, getFieldValue(getField(FIELD_Y_IDENTIFIER), difference),
+            "Field 'y' in class %s does not have the same value the expected difference".formatted(className));
     }
 }
