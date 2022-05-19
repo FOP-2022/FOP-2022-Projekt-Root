@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import projekt.utils.ReflectUtils;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
@@ -76,9 +77,9 @@ public class LocationTests extends TestClass {
         for (Object[] parameters : INSTANTIATION_PARAMETERS) {
             Object instance = newInstance(getConstructor(CONSTRUCTOR_SIGNATURE), parameters);
 
-            assertSame(parameters[0], getFieldValue(getField(FIELD_X_IDENTIFIER), instance),
+            assertEquals(parameters[0], getFieldValue(getField(FIELD_X_IDENTIFIER), instance),
                 "Field 'x' in class %s does not have the same value as first parameter of constructor".formatted(className));
-            assertSame(parameters[1], getFieldValue(getField(FIELD_Y_IDENTIFIER), instance),
+            assertEquals(parameters[1], getFieldValue(getField(FIELD_Y_IDENTIFIER), instance),
                 "Field 'y' in class %s does not have the same value as second parameter of constructor".formatted(className));
         }
     }
