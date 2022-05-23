@@ -27,10 +27,10 @@
 
 ### H2.1
 
-- [ ] Interface Sauceable und Methode getSauce korrekt deklariert
-- [ ] Interface Pizza und Methode getDiameter korrekt deklariert
-- [ ] Interface Pasta und Methode getThickness korrekt deklariert
-- [ ] Interface Ice und Methode getFlavor korrekt deklariert
+- [ ] Interface `Sauceable` und Methode `getSauce` korrekt deklariert
+- [ ] Interface `Pizza` und Methode `getDiameter` korrekt deklariert
+- [ ] Interface `Pasta` und Methode `getThickness` korrekt deklariert
+- [ ] Interface `Ice` und Methode `getFlavor` korrekt deklariert
 
 ### H2.2
 
