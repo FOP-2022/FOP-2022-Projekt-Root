@@ -5,12 +5,13 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import projekt.rwap.ReflectTestUtils;
+import projekt.rwap.ReflectedInstance;
+import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Map;
 
 import static projekt.utils.TutorAssertions.*;
 
@@ -18,13 +19,15 @@ import static projekt.utils.TutorAssertions.*;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class EuclideanDistanceCalculatorTests extends TestClass {
 
-    public static final String CONSTRUCTOR_SIGNATURE = "projekt.base.EuclideanDistanceCalculator()";
+    private static final double EPSILON = 1e-6;
+
+    public static final String CONSTRUCTOR_SIGNATURE = "%s()".formatted(ClassName.EUCLIDEAN_DISTANCE_CALCULATOR);
     public static final String METHOD_CALCULATE_DISTANCE_SIGNATURE = "calculateDistance(%s, %s)"
-        .formatted("projekt.base.Location", "projekt.base.Location"); // TODO: replace string literals
+        .formatted(ClassName.LOCATION, ClassName.LOCATION);
 
     public EuclideanDistanceCalculatorTests() {
         super(
-            "projekt.base.EuclideanDistanceCalculator",
+            ClassName.EUCLIDEAN_DISTANCE_CALCULATOR,
             predicatesFromSignatures(CONSTRUCTOR_SIGNATURE),
             predicatesFromSignatures(METHOD_CALCULATE_DISTANCE_SIGNATURE)
         );
@@ -46,12 +49,29 @@ public class EuclideanDistanceCalculatorTests extends TestClass {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(LocationsProvider.class)
+    @CsvSource({
+        "5, 5, 8, 9, 5",
+        "-5, -5, -8, -9, 5",
+        "1, 1, 2, 2, 1.41421356237",
+        "-1, -1, -2, -2, 1.41421356237",
+    })
     @DisplayName("3 | calculateDistance(Location, Location)")
-    public void testCalculateDistance(Object location1, Object location2) {
-        Object instance = newInstance(getConstructor(CONSTRUCTOR_SIGNATURE));
-        Method calculateDistance = getMethod(METHOD_CALCULATE_DISTANCE_SIGNATURE);
+    public void testCalculateDistance(int x1, int y1, int x2, int y2, double expected) throws ReflectiveOperationException {
+        var locationClass = ReflectTestUtils.getClassForName(ClassName.LOCATION);
+        var instance = ReflectedInstance
+            .getConstructor(clazz)
+            .newInstance();
 
+        var calculateDistance = instance.getMethod("calculateDistance", locationClass, locationClass);
+        var loc1 = ReflectedInstance
+            .getConstructor(locationClass, int.class, int.class)
+            .newInstance(x1, y1);
+        var loc2 = ReflectedInstance
+            .getConstructor(locationClass, int.class, int.class)
+            .newInstance(x2, y2);
 
+        var result = calculateDistance.invoke(loc1.getInstance(), loc2.getInstance());
+
+        assertEquals(expected, (double) result.getInstance(), EPSILON);
     }
 }

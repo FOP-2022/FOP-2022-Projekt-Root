@@ -28,6 +28,7 @@ public class ClassName {
     public static final String SAUCABLE = "projekt.food.Saucable";
     public static final String SAUCABLE_CONFIG = "projekt.food.Saucable$Config";
     public static final String SAUCABLE_VARIANT = "projekt.food.Saucable$Variant";
+    public static final String EUCLIDEAN_DISTANCE_CALCULATOR =  "projekt.base.EuclideanDistanceCalculator";
 
     private ClassName() {}
 }

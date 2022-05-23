@@ -1,9 +1,9 @@
 package projekt.utils;
 
 import kotlin.Pair;
-import org.jetbrains.annotations.NotNull;
 import org.opentest4j.AssertionFailedError;
 import org.opentest4j.TestAbortedException;
+import projekt.rwap.ReflectTestUtils;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
@@ -115,11 +115,7 @@ public class TestClass {
                         Map<String, Predicate<Field>> fieldPredicates,
                         Map<String, Predicate<Method>> methodPredicates) {
         this.className = className;
-        try {
-            this.clazz = Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            throw new TestAbortedException("Class %s could not be found".formatted(className), e);
-        }
+        this.clazz = ReflectTestUtils.getClassForName(className);
         this.constructorMap = mapPredicates(constructorPredicates, clazz.getConstructors(), clazz.getDeclaredConstructors());
         this.fieldMap = mapPredicates(fieldPredicates, clazz.getFields(), clazz.getDeclaredFields());
         this.methodMap = mapPredicates(methodPredicates, clazz.getMethods(), clazz.getDeclaredMethods());
