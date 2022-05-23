@@ -29,6 +29,7 @@ public class DistanceCalculatorTests extends TestClass {
     @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
+        assertClassNotGeneric(clazz);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_CALCULATE_DISTANCE_SIGNATURE),

@@ -32,6 +32,7 @@ public class IceCreamVariantTest extends TestClass {
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
         assertClassImplements(clazz, ClassName.FOOD_VARIANT);
+        assertClassNotGeneric(clazz);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_BASE_FLAVOR_SIGNATURE),

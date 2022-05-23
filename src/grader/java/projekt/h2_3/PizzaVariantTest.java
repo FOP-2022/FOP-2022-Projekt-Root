@@ -32,6 +32,7 @@ public class PizzaVariantTest extends TestClass {
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
         assertClassImplements(clazz, ClassName.SAUCABLE_VARIANT);
+        assertClassNotGeneric(clazz);
 
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_BASE_DIAMETER_SIGNATURE),
