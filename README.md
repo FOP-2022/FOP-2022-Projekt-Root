@@ -9,7 +9,7 @@
 
 ### H1.2
 
-- [ ] Interface `DistanceCalculator` existiert und Methoden sind korrekt deklariert
+- [X] Interface `DistanceCalculator` existiert und Methoden sind korrekt deklariert
 - [ ] Impl 1 ist korrekt
 - [ ] Impl 2 ist korrekt
 - [ ] Impl 3 ist korrekt
@@ -27,35 +27,35 @@
 
 ### H2.1
 
-- [ ] Interface `Sauceable` und Methode `getSauce` korrekt deklariert
-- [ ] Interface `Pizza` und Methode `getDiameter` korrekt deklariert
-- [ ] Interface `Pasta` und Methode `getThickness` korrekt deklariert
-- [ ] Interface `Ice` und Methode `getFlavor` korrekt deklariert
+- [X] Interface `Sauceable` und Methode `getSauce` korrekt deklariert
+- [X] Interface `Pizza` und Methode `getDiameter` korrekt deklariert
+- [X] Interface `Pasta` und Methode `getThickness` korrekt deklariert
+- [X] Interface `IceCream` und Methode `getFlavor` korrekt deklariert
 
 ### H2.2
 
-- [ ] Interfaces korrekt deklariert
-- [ ] ^ x2
-- [ ] Methoden korrekt deklariert
-- [ ] ^ x2
+- [X] Interfaces korrekt deklariert
+- [X] ^ x2
+- [X] Methoden korrekt deklariert
+- [X] ^ x2
 
 ### H2.3
 
-- [ ] Alle Interfaces existieren ggf. Nachkorrektur
-- [ ] Alle Methoden sind korrekt deklariert
+- [X] Alle Interfaces existieren ggf. Nachkorrektur
+- [X] Alle Methoden sind korrekt deklariert
 - [ ] Alle Interfaces sind korrekt deklariert, insbesondere korrekt abgeleitet (Generics!)
 
 ### H2.4
 
-- [ ] Für jedes Interface existiert eine implementierende Klasse
+- [X] Für jedes Interface existiert eine implementierende Klasse
 - [ ] Für jede Klasse existiert ein sinnvoller Konstruktor (ohne Prüfung Generics)
-- [ ] gemeinsame Eigenschaften: `price`, `weight`, `variant`, `extras` + Methoden
-- [ ] Nicht-gemeinsame Eigenschaften richtig + Methoden
+- [X] gemeinsame Eigenschaften: `price`, `weight`, `variant`, `extras` + Methoden
+- [X] Nicht-gemeinsame Eigenschaften richtig + Methoden
 - [ ] Die Aufgabe ist vollständig korrekt umgesetzt ggf. Ersetzen
 
 ### H2.5
 
-- [ ] Für jede `Food`-Klasse existiert die jeweilige `Config`-Implementation
+- [X] Für jede `Food`-Klasse existiert die jeweilige `Config`-Implementation
 - [ ] Es gibt einen sinnvollen Weg, um die aktuellen Mutators zu speichern
 - [ ] `get{…}` ohne Modifikation liefert Identity zurück
 - [ ] Setter-Methode setzt Attribut (muss nur für erste Zuweisung funktionieren)
