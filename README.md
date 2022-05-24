@@ -64,16 +64,54 @@
 
 ### H2.6
 
+- [ ] Klasse + Generics
+- [ ] Constructor
+- [ ] Attribute + Getter
+
 ### H2.7
+
+- [ ] >= 4 richtig
+- [ ] >= 8 richtig und `ALL` richtig
+- [ ] Eigene Extras
+
+    1. min. 2
+    1. Generics
+    1. Sind in `ALL` enthalten
 
 ### H2.8
 
+- [ ] Korrekt deklariert
+- [ ] Sortierung nach `priority`
+- [ ] Sortierung genauer nach `name`
+
 ### H2.9
+
+- [ ] Korrekt deklarierte Klasse und Attribute
+- [ ] Konstruktor und Getter
+- [ ] `addFoodVariant` und `getFoodVariants` korrekt
 
 ### H2.10
 
+- [ ] Konstanten `PIZZA`, `PASTA` und `ICE_CREAM` sind korrekt (dec. + impl.)
+- [ ] Food Variants sind richtig gesetzt
+- [ ] Konstanten `ALL` korrekt (dec. + impl.)
+
 ### H2.11
+
+- [ ] Klasse korrekt deklariert
+- [ ] Methode korrekt deklariert
 
 ### H2.12
 
+- [ ] `PizzaImpl.Variant` korrekt außer `create`
+- [ ] `PizzaImpl.Variant.create`
+- [ ] `PastaImpl.Variant` korrekt außer `create`
+- [ ] `PastaImpl.Variant.create`
+- [ ] `IceCreamImpl.Variant` korrekt außer `create`
+- [ ] `IceCreamImpl.Variant.create`
+
 ### H2.13
+
+- [ ] Gerichte vom Typ Pizza
+- [ ] Gerichte vom Typ Pasta
+- [ ] Gerichte vom Typ Ice Cream
