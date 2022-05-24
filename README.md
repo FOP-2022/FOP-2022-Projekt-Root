@@ -78,7 +78,7 @@
     1. Generics
     1. Sind in `ALL` enthalten
 
-### H2.8
+### H2.8 - Alex
 
 - [ ] Korrekt deklariert
 - [ ] Sortierung nach `priority`
@@ -90,7 +90,7 @@
 - [ ] Konstruktor und Getter
 - [ ] `addFoodVariant` und `getFoodVariants` korrekt
 
-### H2.10
+### H2.10 - Alex
 
 - [ ] Konstanten `PIZZA`, `PASTA` und `ICE_CREAM` sind korrekt (dec. + impl.)
 - [ ] Food Variants sind richtig gesetzt
@@ -101,7 +101,7 @@
 - [ ] Klasse korrekt deklariert
 - [ ] Methode korrekt deklariert
 
-### H2.12
+### H2.12 - Alex
 
 - [ ] `PizzaImpl.Variant` korrekt außer `create`
 - [ ] `PizzaImpl.Variant.create`
