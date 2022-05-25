@@ -52,7 +52,7 @@ public class TestClass {
     /**
      * A map of constructors assigned to their signatures.
      */
-    protected final Map<String, Constructor<?>> constructorMap;
+    protected Map<String, Constructor<?>> constructorMap;
 
     /**
      * A map of fields assigned to their identifiers.
@@ -116,9 +116,13 @@ public class TestClass {
                         Map<String, Predicate<Method>> methodPredicates) {
         this.className = className;
         this.clazz = ReflectTestUtils.getClassForName(className);
-        this.constructorMap = mapPredicates(constructorPredicates, clazz.getConstructors(), clazz.getDeclaredConstructors());
+        setConstructorPredicates(constructorPredicates);
         this.fieldMap = mapPredicates(fieldPredicates, clazz.getFields(), clazz.getDeclaredFields());
         this.methodMap = mapPredicates(methodPredicates, clazz.getMethods(), clazz.getDeclaredMethods());
+    }
+
+    protected void setConstructorPredicates(Map<String, Predicate<Constructor<?>>> constructorPredicates) {
+        this.constructorMap = mapPredicates(constructorPredicates, clazz.getConstructors(), clazz.getDeclaredConstructors());
     }
 
     /**

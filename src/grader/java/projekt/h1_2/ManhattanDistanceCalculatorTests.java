@@ -5,16 +5,16 @@ import org.junit.jupiter.api.TestMethodOrder;
 import projekt.utils.ClassName;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-public class EuclideanDistanceCalculatorTests extends DistanceCalculatorImplTests {
+public class ManhattanDistanceCalculatorTests extends DistanceCalculatorImplTests {
 
-    public EuclideanDistanceCalculatorTests() {
-        super(ClassName.EUCLIDEAN_DISTANCE_CALCULATOR);
+    public ManhattanDistanceCalculatorTests() {
+        super(ClassName.MANHATTAN_DISTANCE_CALCULATOR);
     }
 
     @Override
     protected double getExpected(int x1, int y1, int x2, int y2) {
         var dx = x1 - x2;
         var dy = y1 - y2;
-        return Math.sqrt(dx*dx + dy*dy);
+        return Math.abs(dx) + Math.abs(dy);
     }
 }

@@ -11,8 +11,8 @@
 
 - [X] Interface `DistanceCalculator` existiert und Methoden sind korrekt deklariert
 - [X] Impl 1 ist korrekt
-- [ ] Impl 2 ist korrekt
-- [ ] Impl 3 ist korrekt
+- [X] Impl 2 ist korrekt
+- [X] Impl 3 ist korrekt
 
 ### H1.3
 
