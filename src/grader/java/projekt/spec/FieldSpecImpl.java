@@ -25,4 +25,9 @@ public class FieldSpecImpl extends MemberSpecImpl<FieldSpec> implements FieldSpe
             }
         };
     }
+
+    @Override
+    protected FieldSpec self() {
+        return this;
+    }
 }

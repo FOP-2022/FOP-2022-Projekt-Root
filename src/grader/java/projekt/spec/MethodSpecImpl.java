@@ -23,4 +23,9 @@ public class MethodSpecImpl extends MemberSpecImpl<MethodSpec> implements Method
             }
         };
     }
+
+    @Override
+    protected MethodSpec self() {
+        return this;
+    }
 }

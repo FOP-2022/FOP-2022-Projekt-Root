@@ -17,14 +17,16 @@ public abstract class MemberSpecImpl<T extends MemberSpec<T>> implements MemberS
     }
 
     @Override
-    public MemberSpec<T> requireType(Class<?> expectedType) {
+    public T requireType(Class<?> expectedType) {
         typePredicate = TypeUtils.hasType(expectedType);
-        return this;
+        return self();
     }
 
     @Override
-    public MemberSpec<T> requireModifiers(int modifiers) {
+    public T requireModifiers(int modifiers) {
         this.modifiers = modifiers;
-        return this;
+        return self();
     }
+
+    protected abstract T self();
 }
