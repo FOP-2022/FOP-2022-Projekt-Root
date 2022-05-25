@@ -1,38 +1,13 @@
 package projekt.spec;
 
-import projekt.utils.TutorAssertions;
-import projekt.utils.TypeUtils;
-
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
-import java.util.function.Predicate;
 
-import static projekt.utils.TutorAssertions.assertClassHasField;
+import static projekt.utils.TutorAssertions.*;
 
-public class FieldSpecImpl implements FieldSpec {
-
-    private final ClassSpec classSpec;
-    private final String name;
-
-    private Predicate<Type> typePredicate;
-
-    private int modifiers = -1;
+public class FieldSpecImpl extends MemberSpecImpl<FieldSpec> implements FieldSpec {
 
     FieldSpecImpl(ClassSpec classSpec, String name) {
-        this.classSpec = classSpec;
-        this.name = name;
-    }
-
-    @Override
-    public FieldSpecImpl requireType(Class<?> expectedType) {
-        typePredicate = TypeUtils.hasType(expectedType);
-        return this;
-    }
-
-    @Override
-    public FieldSpecImpl requireModifiers(int modifiers) {
-        this.modifiers = modifiers;
-        return this;
+        super(classSpec, name);
     }
 
     @Override
@@ -41,7 +16,7 @@ public class FieldSpecImpl implements FieldSpec {
             @Override
             public void testField() {
                 Field field = assertClassHasField(classSpec.getClassToSpec(), name);
-                TutorAssertions.assertField(field, modifiers, typePredicate);
+                assertField(field, modifiers, typePredicate);
             }
 
             @Override

@@ -15,6 +15,8 @@ public class ClassSpec {
 
     private final Set<FieldSpec> fieldSpecs = new HashSet<>();
 
+    private final Set<MethodSpec> methodSpecs = new HashSet<>();
+
     private String className;
     private Class<?> clazz;
 
@@ -34,6 +36,13 @@ public class ClassSpec {
         return spec;
     }
 
+
+    public MethodSpec requireMethod(String name) {
+        var spec = new MethodSpecImpl(this, name);
+        methodSpecs.add(spec);
+        return spec;
+    }
+
     public Class<?> getClassToSpec() {
         if (clazz == null) {
             throw new IllegalStateException(
@@ -43,7 +52,7 @@ public class ClassSpec {
         return clazz;
     }
 
-    public Stream<Arguments> provideFieldSpecs() {
+    public Stream<Arguments> provideFieldTesters() {
         var testers = fieldSpecs.isEmpty()
             ? Stream.of(new EmptyFieldTester())
             : fieldSpecs.stream()
@@ -52,8 +61,19 @@ public class ClassSpec {
         return testers.map(Arguments::of);
     }
 
+
+    public Stream<Arguments> provideMethodTesters() {
+        var testers = methodSpecs.isEmpty()
+            ? Stream.of(new EmptyMethodTester())
+            : methodSpecs.stream()
+            .map(MethodSpec::getTester);
+
+        return testers.map(Arguments::of);
+    }
+
     public void assertClass() {
         assertClassImplements(clazz, interfacesToImplement.stream());
+        assertClassNotGeneric(clazz);
     }
 
     public void findClass() {
