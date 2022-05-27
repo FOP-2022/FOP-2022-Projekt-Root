@@ -19,11 +19,11 @@
 - [x] Klasse existiert+Attribute korrekt+Konstruktor korrekt deklariert
 - [ ] Logik des Konstruktors richtig
 
-    1. beide nicht null,
-    1. `start <= end`
-    1. Exception vollständig korrekt
-    1. Attribute korrekt zugewiesen
-    1. drei Getter-Methoden funktionieren korrekt
+    1. [x] beide nicht null,
+    1. [ ] `start <= end`
+    1. [ ] Exception vollständig korrekt
+    1. [ ] Attribute korrekt zugewiesen
+    1. [ ] drei Getter-Methoden funktionieren korrekt
 
 ### H2.1
 

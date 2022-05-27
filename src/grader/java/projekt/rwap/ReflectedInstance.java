@@ -3,7 +3,6 @@ package projekt.rwap;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 public class ReflectedInstance {
     private final Class<?> clazz;
@@ -14,7 +13,7 @@ public class ReflectedInstance {
         this.instance = instance;
     }
 
-    public static ConstructorWrapper getConstructor(Class<?> clazz, Class<?>... parameterTypes) throws NoSuchMethodException {
+    public static ConstructorWrapper getConstructor(Class<?> clazz, Class<?>... parameterTypes) throws ReflectiveOperationException {
         var constructor = clazz.getDeclaredConstructor(parameterTypes);
         constructor.setAccessible(true);
         return initargs ->
@@ -46,12 +45,6 @@ public class ReflectedInstance {
 
         method.setAccessible(true);
         return method;
-    }
-
-    private Class<?>[] argsToTypes(Object... args) {
-        return Arrays.stream(args)
-            .map(Object::getClass)
-            .toArray(Class[]::new);
     }
 
     public Object getInstance() {
