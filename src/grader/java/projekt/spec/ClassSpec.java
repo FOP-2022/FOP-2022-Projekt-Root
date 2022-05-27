@@ -4,9 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.params.provider.Arguments;
 import org.opentest4j.AssertionFailedError;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static projekt.utils.TutorAssertions.*;
@@ -14,6 +12,8 @@ import static projekt.utils.TutorAssertions.*;
 public class ClassSpec {
 
     private final Set<String> interfacesToImplement = new HashSet<>();
+
+    private final List<Set<String>> typeParameters = new ArrayList<>();
 
     private final Set<FieldSpec> fieldSpecs = new HashSet<>();
 
@@ -31,6 +31,11 @@ public class ClassSpec {
 
     public ClassSpec requireImplements(String interfaceName) {
         interfacesToImplement.add(interfaceName);
+        return this;
+    }
+
+    public ClassSpec requireTypeParameterBoundBy(String... bounds) {
+        typeParameters.add(Set.of(bounds));
         return this;
     }
 
@@ -86,7 +91,10 @@ public class ClassSpec {
 
     public void assertClass() {
         assertClassImplements(clazz, interfacesToImplement.stream());
-        assertClassNotGeneric(clazz);
+
+        var typeParameters = this.typeParameters.toArray(Set[]::new);
+        //noinspection unchecked
+        assertClassHasTypeParameters(clazz, typeParameters);
     }
 
     public void findClass() {

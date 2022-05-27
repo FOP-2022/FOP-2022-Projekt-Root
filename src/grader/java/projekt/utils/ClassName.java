@@ -32,6 +32,8 @@ public class ClassName {
     public static final String MANHATTAN_DISTANCE_CALCULATOR = "projekt.base.ManhattanDistanceCalculator";
     public static final String CHESSBOARD_DISTANCE_CALCULATOR = "projekt.base.ChessboardDistanceCalculator";
     public static final String TIME_INTERVAL = "projekt.base.TimeInterval";
+    public static final String EXTRA = "projekt.food.Extra";
+    public static final String EXTRA_IMPL = "projekt.food.ExtraImpl";
 
     private ClassName() {}
 }

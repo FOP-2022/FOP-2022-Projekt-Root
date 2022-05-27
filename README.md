@@ -43,7 +43,7 @@
 
 - [X] Alle Interfaces existieren ggf. Nachkorrektur
 - [X] Alle Methoden sind korrekt deklariert
-- [ ] Alle Interfaces sind korrekt deklariert, insbesondere korrekt abgeleitet (Generics!)
+- [X] Alle Interfaces sind korrekt deklariert, insbesondere korrekt abgeleitet (Generics!)
 
 ### H2.4
 
@@ -64,14 +64,14 @@
 
 ### H2.6
 
-- [ ] Klasse + Generics
+- [X] Klasse + Generics
 - [ ] Constructor
 - [ ] Attribute + Getter
 
 ### H2.7
 
-- [ ] >= 4 richtig
-- [ ] >= 8 richtig und `ALL` richtig
+- [ ] `>= 4` richtig
+- [ ] `>= 8` richtig und `ALL` richtig
 - [ ] Eigene Extras
 
     1. min. 2
