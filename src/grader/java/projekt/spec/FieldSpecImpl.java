@@ -11,10 +11,10 @@ public class FieldSpecImpl extends MemberSpecImpl<FieldSpec> implements FieldSpe
     }
 
     @Override
-    public FieldTester getTester() {
-        return new FieldTester() {
+    public SpecTester getTester() {
+        return new SpecTester() {
             @Override
-            public void testField() {
+            public void runTest() {
                 Field field = assertClassHasField(classSpec.getClassToSpec(), name);
                 assertField(field, modifiers, typePredicate);
             }

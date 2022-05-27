@@ -12,6 +12,10 @@ class TimeIntervalTest extends ClassSpecTestCase {
     TimeIntervalTest() {
         spec.requireClass(ClassName.TIME_INTERVAL);
 
+        spec.requireConstructor("%s(%s, %s)"
+                .formatted(ClassName.TIME_INTERVAL, LocalDateTime.class.getName(), LocalDateTime.class.getName()))
+            .requireModifiers(Modifier.PUBLIC);
+
         spec.requireField("start")
             .requireModifiers(Modifier.PRIVATE | Modifier.FINAL)
             .requireType(LocalDateTime.class);

@@ -26,8 +26,8 @@ public abstract class ClassSpecTestCase {
 
     @ParameterizedTest
     @MethodSource("provideForTestFields")
-    void testFields(FieldTester tester) {
-        tester.testField();
+    void testFields(SpecTester tester) {
+        tester.runTest();
     }
 
     Stream<Arguments> provideForTestFields() {
@@ -36,11 +36,21 @@ public abstract class ClassSpecTestCase {
 
     @ParameterizedTest
     @MethodSource("provideForTestMethods")
-    void testMethods(MethodTester tester) {
-        tester.testMethod();
+    void testMethods(SpecTester tester) {
+        tester.runTest();
     }
 
     Stream<Arguments> provideForTestMethods() {
         return spec.provideMethodTesters();
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideForTestConstructors")
+    void testConstructors(SpecTester tester) {
+        tester.runTest();
+    }
+
+    Stream<Arguments> provideForTestConstructors() {
+        return spec.provideConstructorTesters();
     }
 }

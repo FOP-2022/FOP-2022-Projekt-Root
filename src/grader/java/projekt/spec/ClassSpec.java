@@ -1,8 +1,10 @@
 package projekt.spec;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.params.provider.Arguments;
 import org.opentest4j.AssertionFailedError;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -16,6 +18,8 @@ public class ClassSpec {
     private final Set<FieldSpec> fieldSpecs = new HashSet<>();
 
     private final Set<MethodSpec> methodSpecs = new HashSet<>();
+
+    private final Set<ConstructorSpec> constructorSpecs = new HashSet<>();
 
     private String className;
     private Class<?> clazz;
@@ -36,6 +40,12 @@ public class ClassSpec {
         return spec;
     }
 
+    public ConstructorSpec requireConstructor(String signatur) {
+        var spec = new ConstructorSpecImpl(this, signatur);
+        constructorSpecs.add(spec);
+        return spec;
+    }
+
 
     public MethodSpec requireMethod(String name) {
         var spec = new MethodSpecImpl(this, name);
@@ -53,20 +63,23 @@ public class ClassSpec {
     }
 
     public Stream<Arguments> provideFieldTesters() {
-        var testers = fieldSpecs.isEmpty()
-            ? Stream.of(new EmptyFieldTester())
-            : fieldSpecs.stream()
-                .map(FieldSpec::getTester);
-
-        return testers.map(Arguments::of);
+        return getTesterArguments("field", fieldSpecs);
     }
 
+    public Stream<Arguments> provideConstructorTesters() {
+        return getTesterArguments("constructor", constructorSpecs);
+    }
 
     public Stream<Arguments> provideMethodTesters() {
-        var testers = methodSpecs.isEmpty()
-            ? Stream.of(new EmptyMethodTester())
-            : methodSpecs.stream()
-            .map(MethodSpec::getTester);
+        return getTesterArguments("method", methodSpecs);
+    }
+
+    @NotNull
+    private Stream<Arguments> getTesterArguments(String type, Collection<? extends TestableSpec> specs) {
+        var testers = specs.isEmpty()
+            ? Stream.of(new EmptySpecTester(type))
+            : specs.stream()
+            .map(TestableSpec::getTester);
 
         return testers.map(Arguments::of);
     }

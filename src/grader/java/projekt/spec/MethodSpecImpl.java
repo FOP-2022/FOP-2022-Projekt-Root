@@ -9,10 +9,10 @@ public class MethodSpecImpl extends MemberSpecImpl<MethodSpec> implements Method
     }
 
     @Override
-    public MethodTester getTester() {
-        return new MethodTester() {
+    public SpecTester getTester() {
+        return new SpecTester() {
             @Override
-            public void testMethod() {
+            public void runTest() {
                 var method = assertClassHasMethod(classSpec.getClassToSpec(), name);
                 assertMethod(method, modifiers, typePredicate);
             }

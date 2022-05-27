@@ -1,6 +1,6 @@
 package projekt.spec;
 
-public interface MemberSpec<T extends MemberSpec<T>> {
+public interface MemberSpec<T extends MemberSpec<T>> extends TestableSpec {
 
     T requireType(Class<?> expectedType);
 

@@ -16,7 +16,7 @@
 
 ### H1.3
 
-- [ ] Klasse existiert+Attribute korrekt+Konstruktor korrekt deklariert
+- [x] Klasse existiert+Attribute korrekt+Konstruktor korrekt deklariert
 - [ ] Logik des Konstruktors richtig
 
     1. beide nicht null,
