@@ -9,7 +9,7 @@ public abstract class MemberSpecImpl<T extends MemberSpec<T>> implements MemberS
     protected final ClassSpec classSpec;
     protected final String name;
     protected Predicate<Type> typePredicate;
-    protected int modifiers = -1;
+    protected Integer modifiers = null;
 
     public MemberSpecImpl(ClassSpec classSpec, String name) {
         this.classSpec = classSpec;
@@ -18,6 +18,12 @@ public abstract class MemberSpecImpl<T extends MemberSpec<T>> implements MemberS
 
     @Override
     public T requireType(Class<?> expectedType) {
+        typePredicate = TypeUtils.hasType(expectedType);
+        return self();
+    }
+
+    @Override
+    public T requireType(String expectedType) {
         typePredicate = TypeUtils.hasType(expectedType);
         return self();
     }

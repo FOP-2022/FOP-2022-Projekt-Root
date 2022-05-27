@@ -36,6 +36,7 @@ public class ClassName {
     public static final String EXTRA_IMPL = "projekt.food.ExtraImpl";
     public static final String FOOD_TYPE = "projekt.food.FoodType";
     public static final String FOOD_TYPE_IMPL = "projekt.food.FoodTypeImpl";
+    public static final String FOOD_BUILDER = "projekt.food.FoodBuilder";
 
     private ClassName() {}
 }

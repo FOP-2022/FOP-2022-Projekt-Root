@@ -98,8 +98,8 @@
 
 ### H2.11
 
-- [ ] Klasse korrekt deklariert
-- [ ] Methode korrekt deklariert
+- [X] Klasse korrekt deklariert
+- [X] Methode korrekt deklariert
 
 ### H2.12 - Alex
 
