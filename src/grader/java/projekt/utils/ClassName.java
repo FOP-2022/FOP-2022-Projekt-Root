@@ -34,6 +34,8 @@ public class ClassName {
     public static final String TIME_INTERVAL = "projekt.base.TimeInterval";
     public static final String EXTRA = "projekt.food.Extra";
     public static final String EXTRA_IMPL = "projekt.food.ExtraImpl";
+    public static final String FOOD_TYPE = "projekt.food.FoodType";
+    public static final String FOOD_TYPE_IMPL = "projekt.food.FoodTypeImpl";
 
     private ClassName() {}
 }

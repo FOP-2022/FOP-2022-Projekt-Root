@@ -86,7 +86,7 @@
 
 ### H2.9
 
-- [ ] Korrekt deklarierte Klasse und Attribute
+- [X] Korrekt deklarierte Klasse und Attribute
 - [ ] Konstruktor und Getter
 - [ ] `addFoodVariant` und `getFoodVariants` korrekt
 
