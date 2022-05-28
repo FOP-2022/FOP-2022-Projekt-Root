@@ -4,7 +4,7 @@ plugins {
     java
     application
     id("org.sourcegrade.style") version "2.0.0"
-    id("org.sourcegrade.submitter") version "0.4.0"
+    id("org.sourcegrade.submitter") version "0.5.1"
 }
 
 version = "0.1.0-SNAPSHOT"
