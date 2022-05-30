@@ -38,11 +38,15 @@ public class SaucableConfigTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
+    @DisplayName("Interface")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
         assertClassImplements(clazz, ClassName.FOOD_CONFIG);
+    }
 
+    @Test
+    @DisplayName("Methods")
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_SAUCE_SIGNATURE),
             TypeUtils.hasType(void.class)

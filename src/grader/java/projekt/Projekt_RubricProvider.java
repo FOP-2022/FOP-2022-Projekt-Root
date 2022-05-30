@@ -26,7 +26,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.and(
                 JUnitTestRef.ofMethod(() ->
-                    LocationTests.class.getMethod("testDefinition")),
+                    LocationTests.class.getMethod("testMethods")),
                 JUnitTestRef.ofMethod(() ->
                     LocationTests.class.getMethod("testInstance", Integer.class, Integer.class))
             ))
@@ -171,31 +171,15 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H2_2_1 = Criterion.builder()
         .shortDescription("Die Interfaces **.Config sind alle korrekt definiert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.or(
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
-                    JUnitTestRef.ofClass(PizzaConfigTest.class)
-                ),
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
-                    JUnitTestRef.ofClass(PastaConfigTest.class)
-                ),
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
-                    JUnitTestRef.ofClass(SaucableConfigTest.class)
-                ),
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(PizzaConfigTest.class),
-                    JUnitTestRef.ofClass(PastaConfigTest.class)
-                ),
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(PizzaConfigTest.class),
-                    JUnitTestRef.ofClass(SaucableConfigTest.class)
-                ),
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(PastaConfigTest.class),
-                    JUnitTestRef.ofClass(SaucableConfigTest.class)
-                )
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    PizzaConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    SaucableConfigTest.class.getMethod("testMethods"))
             ))
             .build())
         .maxPoints(2)
@@ -205,10 +189,14 @@ public class Projekt_RubricProvider implements RubricProvider {
         .shortDescription("Die Methoden **.Config#**(T) sind alle korrekt definiert")
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.and(
-                JUnitTestRef.ofClass(IceCreamConfigTest.class),
-                JUnitTestRef.ofClass(PizzaConfigTest.class),
-                JUnitTestRef.ofClass(SaucableConfigTest.class),
-                JUnitTestRef.ofClass(PastaConfigTest.class)
+                JUnitTestRef.ofMethod(() ->
+                    PizzaConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamConfigTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    SaucableConfigTest.class.getMethod("testMethods"))
             ))
             .build())
         .maxPoints(2)

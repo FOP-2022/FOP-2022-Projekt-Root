@@ -38,11 +38,15 @@ public class IceCreamConfigTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
+    @DisplayName("Interface")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
         assertClassImplements(clazz, ClassName.FOOD_CONFIG);
+    }
 
+    @Test
+    @DisplayName("Interface")
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_FLAVOR_SIGNATURE),
             TypeUtils.hasType(void.class)

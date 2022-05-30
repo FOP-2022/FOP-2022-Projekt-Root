@@ -36,11 +36,15 @@ public class PastaConfigTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
+    @DisplayName("Interface")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
         assertClassImplements(clazz, ClassName.SAUCABLE_CONFIG);
+    }
 
+    @Test
+    @DisplayName("Methods")
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_THICKNESS_SIGNATURE),
             TypeUtils.hasType(void.class)
