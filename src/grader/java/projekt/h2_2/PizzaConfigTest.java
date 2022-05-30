@@ -12,7 +12,10 @@ import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.function.DoubleUnaryOperator;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassHasModifiers;
+import static projekt.utils.TutorAssertions.assertClassImplements;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class PizzaConfigTest extends TestClass {
@@ -47,5 +50,4 @@ public class PizzaConfigTest extends TestClass {
             TypeUtils.hasType(DoubleUnaryOperator.class)
         );
     }
-
 }

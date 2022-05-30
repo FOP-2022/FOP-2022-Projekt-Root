@@ -1,6 +1,7 @@
 package projekt.spec;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 public class MethodSpecImpl extends MemberSpecImpl<MethodSpec> implements MethodSpec {
 

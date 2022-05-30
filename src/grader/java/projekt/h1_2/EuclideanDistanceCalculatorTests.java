@@ -15,6 +15,6 @@ public class EuclideanDistanceCalculatorTests extends DistanceCalculatorImplTest
     protected double getExpected(int x1, int y1, int x2, int y2) {
         var dx = x1 - x2;
         var dy = y1 - y2;
-        return Math.sqrt(dx*dx + dy*dy);
+        return Math.sqrt(dx * dx + dy * dy);
     }
 }

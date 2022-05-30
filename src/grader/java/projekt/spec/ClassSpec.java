@@ -4,10 +4,15 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.params.provider.Arguments;
 import org.opentest4j.AssertionFailedError;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasTypeParameters;
+import static projekt.utils.TutorAssertions.assertClassImplements;
 
 public class ClassSpec {
 
@@ -50,7 +55,6 @@ public class ClassSpec {
         constructorSpecs.add(spec);
         return spec;
     }
-
 
     public MethodSpec requireMethod(String name) {
         var spec = new MethodSpecImpl(this, name);

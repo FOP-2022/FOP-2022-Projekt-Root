@@ -5,7 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.opentest4j.AssertionFailedError;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InaccessibleObjectException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -223,8 +229,8 @@ public class TutorAssertions extends Assertions {
      * Asserts that a field has correct modifiers. Checks involving parameters with the {@link Nullable} annotation will be
      * skipped if they are {@code null}.
      *
-     * @param field         the field to assert the things above for
-     * @param modifiers     the modifiers the field should have
+     * @param field     the field to assert the things above for
+     * @param modifiers the modifiers the field should have
      */
     public static void assertField(Field field, @Nullable Integer modifiers) {
         assertField(field, modifiers, null, null);
@@ -265,7 +271,7 @@ public class TutorAssertions extends Assertions {
         }
         if (fieldName != null) {
             assertEquals(fieldName, field.getName(), "Name of Field '%s' in class '%s' does not match expected name"
-                    .formatted(field.getName(), field.getDeclaringClass().getName()));
+                .formatted(field.getName(), field.getDeclaringClass().getName()));
         }
     }
 
@@ -281,7 +287,7 @@ public class TutorAssertions extends Assertions {
         try {
             Object value = field.get(instance);
             assertEquals(expected, value, "Actual value of field '%s' in class '%s' did not match the expected value"
-                    .formatted(field.getName(), field.getDeclaringClass().getName()));
+                .formatted(field.getName(), field.getDeclaringClass().getName()));
             return value;
         } catch (IllegalAccessException e) {
             throw new AssertionFailedError("Could not access field '%s' in class '%s'"
@@ -357,7 +363,7 @@ public class TutorAssertions extends Assertions {
                     .formatted(TypeUtils.executableToString(constructor), constructor.getDeclaringClass().getName()));
         }
         if (parameterPredicates != null) {
-            assertEquals(parameterPredicates.length,  actualParameterTypes.length,
+            assertEquals(parameterPredicates.length, actualParameterTypes.length,
                 "Constructor '%s' in class '%s' does not have expected number of parameters"
                     .formatted(TypeUtils.executableToString(constructor), constructor.getDeclaringClass().getName()));
             for (int i = 0; i < parameterPredicates.length; i++) {
@@ -420,8 +426,8 @@ public class TutorAssertions extends Assertions {
     /**
      * Asserts that a method has correct modifiers.
      *
-     * @param method              the method to assert the things above for
-     * @param modifiers           the modifiers the method should have
+     * @param method    the method to assert the things above for
+     * @param modifiers the modifiers the method should have
      */
     public static void assertMethod(Method method, @Nullable Integer modifiers) {
         assertMethod(method, modifiers, null, null, (Predicate<Type>[]) null);
@@ -440,8 +446,8 @@ public class TutorAssertions extends Assertions {
     /**
      * Asserts that a method has the correct name.
      *
-     * @param method              the method to assert the things above for
-     * @param methodName          the name the given method should have
+     * @param method     the method to assert the things above for
+     * @param methodName the name the given method should have
      */
     public static void assertMethod(Method method, @Nullable String methodName) {
         assertMethod(method, null, null, methodName, (Predicate<Type>[]) null);
@@ -461,9 +467,9 @@ public class TutorAssertions extends Assertions {
     /**
      * Asserts that a method has correct modifiers and name.
      *
-     * @param method              the method to assert the things above for
-     * @param modifiers           the modifiers the method should have
-     * @param methodName          the name the given method should have
+     * @param method     the method to assert the things above for
+     * @param modifiers  the modifiers the method should have
+     * @param methodName the name the given method should have
      */
     public static void assertMethod(Method method, @Nullable Integer modifiers, @Nullable String methodName) {
         assertMethod(method, modifiers, null, methodName, (Predicate<Type>[]) null);
@@ -503,7 +509,6 @@ public class TutorAssertions extends Assertions {
             assertModifiers(modifiers, method.getModifiers(),
                 "Modifiers of method '%s' in class '%s' don't match the expected ones"
                     .formatted(TypeUtils.executableToString(method), method.getDeclaringClass().getName()));
-
         }
         if (returnTypePredicate != null && !returnTypePredicate.test(method.getGenericReturnType())) {
             fail("Method '%s' in class '%s' does not have the correct return type"
@@ -540,7 +545,7 @@ public class TutorAssertions extends Assertions {
      * @param parameters the parameters that will be passed to the method
      */
     public static Object assertMethodReturnValue(Method method, @Nullable Object expected, @Nullable Object instance,
-                                               Object... parameters) {
+                                                 Object... parameters) {
         try {
             Object result = method.invoke(instance, parameters);
             assertEquals(expected, result, "Actual return value of method '%s' in class '%s' did not match expected value"
@@ -598,10 +603,10 @@ public class TutorAssertions extends Assertions {
     /**
      * Assert that the given {@link Class} has the given type parameters.
      * Each parameter is represented by a {@link Set} denoting the bounds for the parameter.
-     *
+     * <p>
      * For instance {@code T extends Number & Config} would be {@code Set.of("java.lang.Number", "de.oshgnacknak.Config")}.
      *
-     * @param clazz {@link Class} that must have type parameters
+     * @param clazz           {@link Class} that must have type parameters
      * @param parameterBounds One {@link Set} for each parameter denoting its bounds.
      */
     @SafeVarargs

@@ -3,9 +3,6 @@ package projekt.h2_11;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
 
-import java.lang.reflect.Modifier;
-import java.util.List;
-
 public class FoodBuilderTest extends ClassSpecTestCase {
 
     FoodBuilderTest() {

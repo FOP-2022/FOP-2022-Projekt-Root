@@ -10,9 +10,12 @@ import projekt.utils.TypeUtils;
 
 import java.lang.reflect.Modifier;
 import java.util.Collections;
-import java.util.Set;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassHasModifiers;
+import static projekt.utils.TutorAssertions.assertClassImplements;
+import static projekt.utils.TutorAssertions.assertClassNotGeneric;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class IceCreamVariantTest extends TestClass {

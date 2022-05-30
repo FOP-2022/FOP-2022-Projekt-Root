@@ -3,7 +3,8 @@ package projekt.spec;
 import java.lang.reflect.Type;
 import java.util.function.Predicate;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasConstructor;
+import static projekt.utils.TutorAssertions.assertConstructor;
 
 public class ConstructorSpecImpl implements ConstructorSpec {
 

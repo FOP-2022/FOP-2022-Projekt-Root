@@ -9,11 +9,14 @@ import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.UnaryOperator;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassHasModifiers;
+import static projekt.utils.TutorAssertions.assertClassNotGeneric;
+import static projekt.utils.TutorAssertions.assertClassTypeParameters;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 /**
  * Sanity checks for {@link projekt.food.Extra}, {@link projekt.food.Food}, {@link projekt.food.FoodType} and
@@ -22,7 +25,8 @@ import static projekt.utils.TutorAssertions.*;
 @SuppressWarnings("NewClassNamingConvention")
 public final class TemplateTests {
 
-    private TemplateTests() {}
+    private TemplateTests() {
+    }
 
     /**
      * Sanity checks for {@link projekt.food.Extra}.
@@ -53,7 +57,7 @@ public final class TemplateTests {
         @DisplayName("Interface and methods")
         public void testDefinition() {
             assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-            assertClassTypeParameters(clazz, new String[] {"C"}, new String[][] {{"projekt.food.Food$Config"}});
+            assertClassTypeParameters(clazz, new String[]{"C"}, new String[][]{{"projekt.food.Food$Config"}});
 
             assertClassHasMethod(clazz, METHOD_GET_NAME_SIGNATURE);
             assertMethod(getMethod(METHOD_GET_NAME_SIGNATURE), Modifier.PUBLIC | Modifier.ABSTRACT,
@@ -199,7 +203,7 @@ public final class TemplateTests {
             @DisplayName("Interface and methods")
             public void testDefinition() {
                 assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.ABSTRACT);
-                assertClassTypeParameters(clazz, new String[] {"F", "C"}, new String[][] {
+                assertClassTypeParameters(clazz, new String[]{"F", "C"}, new String[][]{
                     {new FoodSanityCheck().getTestedClass().getName()},
                     {new ConfigSanityCheck().getTestedClass().getName()}
                 });
@@ -258,7 +262,7 @@ public final class TemplateTests {
         @DisplayName("Interface and methods")
         public void testDefinition() {
             assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
-            assertClassTypeParameters(clazz, new String[] {"F", "C"}, new String[][] {
+            assertClassTypeParameters(clazz, new String[]{"F", "C"}, new String[][]{
                 {new FoodSanityCheck().getTestedClass().getName()},
                 {new FoodSanityCheck.ConfigSanityCheck().getTestedClass().getName()}
             });

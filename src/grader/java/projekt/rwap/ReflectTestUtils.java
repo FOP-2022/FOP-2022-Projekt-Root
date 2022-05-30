@@ -8,8 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ReflectTestUtils {
 
-    private ReflectTestUtils() {}
-
+    private ReflectTestUtils() {
+    }
 
     /**
      * Creates a new instance using {@code constructor} and {@code params} as parameters to pass to the constructor.
@@ -18,7 +18,7 @@ public class ReflectTestUtils {
      * @param params      parameters to pass to the constructor when instantiating
      * @return a new instance of the class {@code constructor} belongs to
      * @throws AssertionFailedError if any exception is thrown during the invocation of {@code constructor},
-     *     the constructor is not accessible or the class could not be instantiated for any reason
+     *                              the constructor is not accessible or the class could not be instantiated for any reason
      */
     public static Object newInstance(Constructor<?> constructor, Object... params) {
         try {

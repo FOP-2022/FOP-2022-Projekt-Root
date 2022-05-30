@@ -10,12 +10,23 @@ import org.junit.jupiter.params.provider.MethodSource;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasConstructor;
+import static projekt.utils.TutorAssertions.assertClassHasField;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassNotGeneric;
+import static projekt.utils.TutorAssertions.assertConstructor;
+import static projekt.utils.TutorAssertions.assertEquals;
+import static projekt.utils.TutorAssertions.assertField;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class LocationTests extends TestClass {
@@ -54,7 +65,7 @@ public class LocationTests extends TestClass {
 
     public static Stream<Arguments> provideConstructorParameters() {
         return Arrays
-            .stream( INSTANTIATION_PARAMETERS)
+            .stream(INSTANTIATION_PARAMETERS)
             .map(Arguments::of);
     }
 
@@ -80,7 +91,6 @@ public class LocationTests extends TestClass {
         Method subtract = assertClassHasMethod(clazz, METHOD_SUBTRACT_SIGNATURE);
         assertMethod(subtract, Modifier.PUBLIC, TypeUtils.hasType(className));
     }
-
 
     @DisplayName("2 | Instance")
     @ParameterizedTest

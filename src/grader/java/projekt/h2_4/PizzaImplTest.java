@@ -6,7 +6,7 @@ import java.lang.reflect.Modifier;
 
 public class PizzaImplTest extends AbstractFoodImpTest {
 
-   PizzaImplTest() {
+    PizzaImplTest() {
         spec.requireClass(ClassName.PIZZA_IMPL)
             .requireImplements(ClassName.PIZZA);
 

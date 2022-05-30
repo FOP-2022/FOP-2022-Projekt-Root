@@ -2,7 +2,8 @@ package projekt.spec;
 
 import java.lang.reflect.Field;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasField;
+import static projekt.utils.TutorAssertions.assertField;
 
 public class FieldSpecImpl extends MemberSpecImpl<FieldSpec> implements FieldSpec {
 

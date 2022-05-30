@@ -1,6 +1,5 @@
 package projekt.h1_2;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
 import projekt.utils.ClassName;

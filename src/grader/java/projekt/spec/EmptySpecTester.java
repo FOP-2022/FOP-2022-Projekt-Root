@@ -9,7 +9,8 @@ public class EmptySpecTester implements SpecTester {
     }
 
     @Override
-    public void runTest() {}
+    public void runTest() {
+    }
 
     @Override
     public String toString() {

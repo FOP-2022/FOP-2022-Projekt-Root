@@ -9,7 +9,10 @@ import projekt.utils.TypeUtils;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassHasModifiers;
+import static projekt.utils.TutorAssertions.assertClassNotGeneric;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 @DisplayName("projekt.base.DistanceCalculator tests")
 public class DistanceCalculatorTests extends TestClass {

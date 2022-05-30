@@ -11,7 +11,10 @@ import projekt.utils.TypeUtils;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
-import static projekt.utils.TutorAssertions.*;
+import static projekt.utils.TutorAssertions.assertClassHasMethod;
+import static projekt.utils.TutorAssertions.assertClassHasModifiers;
+import static projekt.utils.TutorAssertions.assertClassImplements;
+import static projekt.utils.TutorAssertions.assertMethod;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class PastaTest extends TestClass {
@@ -37,5 +40,4 @@ public class PastaTest extends TestClass {
             TypeUtils.hasType(double.class)
         );
     }
-
 }
