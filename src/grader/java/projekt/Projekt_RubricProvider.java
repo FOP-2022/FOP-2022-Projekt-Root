@@ -16,6 +16,7 @@ import projekt.h2_1.IceCreamTest;
 import projekt.h2_1.PastaTest;
 import projekt.h2_1.PizzaTest;
 import projekt.h2_1.SaucableTest;
+import projekt.h2_11.FoodBuilderTest;
 import projekt.h2_2.IceCreamConfigTest;
 import projekt.h2_2.PastaConfigTest;
 import projekt.h2_2.PizzaConfigTest;
@@ -30,7 +31,9 @@ import projekt.h2_4.PizzaImplTest;
 import projekt.h2_5.IceCreamImplConfigTest;
 import projekt.h2_5.PastaImplConfigTest;
 import projekt.h2_5.PizzaImplConfigTest;
+import projekt.h2_6.ExtraImplTest;
 import projekt.h2_8.ExtraTest;
+import projekt.h2_9.FoodTypeImplTest;
 import projekt.h_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
@@ -360,6 +363,9 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_6_1 = Criterion.builder()
         .shortDescription("Die Klasse ExtraImpl ist korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(ExtraImplTest.class))
+            .build())
         .build();
 
     public static final Criterion H2_6_2 = Criterion.builder()
@@ -423,6 +429,14 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_9_1 = Criterion.builder()
         .shortDescription("Die Klasse FoodTypeImpl und Attribute sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    FoodTypeImplTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    FoodTypeImplTest.class.getMethod("testFields", SpecTester.class))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_9_2 = Criterion.builder()
@@ -473,10 +487,18 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_11_1 = Criterion.builder()
         .shortDescription("Das Interface FoodBuilder ist korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                FoodBuilderTest.class.getMethod("testClass")))
+            .build())
         .build();
 
     public static final Criterion H2_11_2 = Criterion.builder()
         .shortDescription("Die Methode 'build' is korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                FoodBuilderTest.class.getMethod("testMethods", SpecTester.class)))
+            .build())
         .build();
 
     public static final Criterion H2_11 = Criterion.builder()
