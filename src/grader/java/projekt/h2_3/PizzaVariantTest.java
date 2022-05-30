@@ -1,6 +1,5 @@
 package projekt.h2_3;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -12,12 +11,7 @@ import projekt.utils.TypeUtils;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static projekt.utils.TutorAssertions.assertClassHasMethod;
-import static projekt.utils.TutorAssertions.assertClassHasModifiers;
-import static projekt.utils.TutorAssertions.assertClassImplements;
-import static projekt.utils.TutorAssertions.assertClassNotGeneric;
-import static projekt.utils.TutorAssertions.assertMethod;
+import static projekt.utils.TutorAssertions.*;
 
 @TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)

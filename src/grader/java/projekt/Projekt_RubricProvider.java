@@ -153,6 +153,7 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H1_3_2 = Criterion.builder()
         .shortDescription("Die Logik des Konstruktors ist richtig")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H1_3 = Criterion.builder()
@@ -330,6 +331,7 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_4_2 = Criterion.builder()
         .shortDescription("Für jede Klasse existiert ein sinnvoller Konstruktor (ohne Prüfung Generics)")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_4_3 = Criterion.builder()
@@ -350,10 +352,12 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_4_4 = Criterion.builder()
         .shortDescription("Nicht-gemeinsame Eigenschaften und Getter-Methoden sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_4_5 = Criterion.builder()
         .shortDescription("Die Aufgabe ist vollständig korrekt umgesetzt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_4 = Criterion.builder()
@@ -524,10 +528,12 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_9_2 = Criterion.builder()
         .shortDescription("Der Konstruktur und Getter-Methoden sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_9_3 = Criterion.builder()
         .shortDescription("Die Methoden 'addFoodVariant' und 'getFoodVariants' sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_9 = Criterion.builder()
