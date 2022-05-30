@@ -2,7 +2,10 @@ package projekt.h2_8;
 
 import org.junit.jupiter.api.Test;
 import projekt.food.Extra;
+import projekt.spec.ClassSpecTestCase;
+import projekt.utils.ClassName;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +51,15 @@ public class ExtraTest {
         assertArrayEquals(new String[]{"g", "x", "a", "b", "f", "a", "a"},
             actualOrder.stream().map(TutorExtra::getName).toArray(),
             "Extras not applied in order of priority and name");
+    }
+
+    public static class SpecTest extends ClassSpecTestCase {
+        public SpecTest() {
+            spec.requireClass(ClassName.EXTRA);
+
+            spec.requireMethod("writeToConfig(C , List<? extends Extra<? super C>>)")
+                .requireModifiers(Modifier.PUBLIC | Modifier.STATIC)
+                .requireType(void.class);
+        }
     }
 }

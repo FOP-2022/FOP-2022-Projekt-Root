@@ -56,8 +56,8 @@ public class ClassSpec {
         return spec;
     }
 
-    public MethodSpec requireMethod(String name) {
-        var spec = new MethodSpecImpl(this, name);
+    public MethodSpec requireMethod(String signature) {
+        var spec = new MethodSpecImpl(this, signature);
         methodSpecs.add(spec);
         return spec;
     }
