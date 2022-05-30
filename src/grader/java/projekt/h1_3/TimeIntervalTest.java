@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TimeIntervalTest extends ClassSpecTestCase {
+public class TimeIntervalTest extends ClassSpecTestCase {
 
     TimeIntervalTest() {
         spec.requireClass(ClassName.TIME_INTERVAL);

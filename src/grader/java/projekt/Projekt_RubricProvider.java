@@ -6,7 +6,14 @@ import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
 import org.sourcegrade.jagr.api.rubric.Rubric;
 import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
 import org.sourcegrade.jagr.api.rubric.RubricProvider;
+import projekt.base.ChessboardDistanceCalculator;
+import projekt.base.TimeInterval;
 import projekt.h1_1.LocationTests;
+import projekt.h1_2.DistanceCalculatorTests;
+import projekt.h1_2.EuclideanDistanceCalculatorTests;
+import projekt.h1_2.ManhattanDistanceCalculatorTests;
+import projekt.h1_3.TimeIntervalTest;
+import projekt.spec.SpecTester;
 
 @RubricForSubmission("projekt")
 public class Projekt_RubricProvider implements RubricProvider {
@@ -14,7 +21,12 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H1_1_1 = Criterion.builder()
         .shortDescription("Die Klasse Location existiert und der Konstruktor ist korrekt")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofMethod(() -> LocationTests.class.getMethod("testDefinition")))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    LocationTests.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    LocationTests.class.getMethod("testInstance", Integer.class, Integer.class))
+            ))
             .pointsPassedMax()
             .pointsFailedMin()
             .build())
@@ -22,6 +34,18 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H1_1_2 = Criterion.builder()
         .shortDescription("Die Klasse Location ist vollständig korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    LocationTests.class.getMethod("testGetters", Integer.class, Integer.class)),
+                JUnitTestRef.ofMethod(() ->
+                    LocationTests.class.getMethod("testAdd", Integer.class, Integer.class)),
+                JUnitTestRef.ofMethod(() ->
+                    LocationTests.class.getMethod("testSub", Integer.class, Integer.class))
+            ))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_1 = Criterion.builder()
@@ -31,18 +55,38 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H1_2_1 = Criterion.builder()
         .shortDescription("Das Interface DistanceCalculator existiert und die Methoden sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(DistanceCalculatorTests.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_2_2 = Criterion.builder()
         .shortDescription("Die Implementation EuclideanDistanceCalculator ist korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(EuclideanDistanceCalculatorTests.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_2_3 = Criterion.builder()
         .shortDescription("Die Implementation ManhattanDistanceCalculator ist korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(ManhattanDistanceCalculatorTests.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_2_4 = Criterion.builder()
         .shortDescription("Die Implementation ChessboardDistanceCalculator ist korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(ChessboardDistanceCalculator.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_2 = Criterion.builder()
@@ -52,6 +96,18 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H1_3_1 = Criterion.builder()
         .shortDescription("Die Klasse TimeInterval existiert und die Attribute + Konstruktor ist korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    TimeIntervalTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    TimeIntervalTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    TimeIntervalTest.class.getMethod("testConstructors", SpecTester.class))
+            ))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H1_3_2 = Criterion.builder()

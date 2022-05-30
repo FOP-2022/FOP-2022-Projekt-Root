@@ -15,18 +15,18 @@ public abstract class ClassSpecTestCase {
     protected final ClassSpec spec = new ClassSpec();
 
     @BeforeEach
-    void findClass() {
+    public void findClass() {
         spec.findClass();
     }
 
     @Test
-    void testClass() {
+    public void testClass() {
         spec.assertClass();
     }
 
     @ParameterizedTest
     @MethodSource("provideForTestFields")
-    void testFields(SpecTester tester) {
+    public void testFields(SpecTester tester) {
         tester.runTest();
     }
 
@@ -36,7 +36,7 @@ public abstract class ClassSpecTestCase {
 
     @ParameterizedTest
     @MethodSource("provideForTestMethods")
-    void testMethods(SpecTester tester) {
+    public void testMethods(SpecTester tester) {
         tester.runTest();
     }
 
@@ -46,7 +46,7 @@ public abstract class ClassSpecTestCase {
 
     @ParameterizedTest
     @MethodSource("provideForTestConstructors")
-    void testConstructors(SpecTester tester) {
+    public void testConstructors(SpecTester tester) {
         tester.runTest();
     }
 
