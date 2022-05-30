@@ -16,6 +16,7 @@ import projekt.h2_1.IceCreamTest;
 import projekt.h2_1.PastaTest;
 import projekt.h2_1.PizzaTest;
 import projekt.h2_1.SaucableTest;
+import projekt.h2_10.FoodTypesTest;
 import projekt.h2_11.FoodBuilderTest;
 import projekt.h2_2.IceCreamConfigTest;
 import projekt.h2_2.PastaConfigTest;
@@ -34,7 +35,6 @@ import projekt.h2_5.PizzaImplConfigTest;
 import projekt.h2_6.ExtraImplTest;
 import projekt.h2_8.ExtraTest;
 import projekt.h2_9.FoodTypeImplTest;
-import projekt.h2_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
 @RubricForSubmission("projekt")
@@ -554,7 +554,7 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2 = Criterion.builder()
         .shortDescription("H2")
-        .addChildCriteria(H2_1, H2_2, H2_3, H2_4, H2_5, H2_6, H2_7, H2_8, H2_9, H2_10, H2_11, H2_11, H2_12, H2_13)
+        .addChildCriteria(H2_1, H2_2, H2_3, H2_4, H2_5, H2_6, H2_7, H2_8, H2_9, H2_10, H2_11, H2_12, H2_13)
         .build();
 
     public static final Rubric RUBRIC = Rubric.builder()
