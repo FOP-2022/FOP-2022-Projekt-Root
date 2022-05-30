@@ -1,6 +1,11 @@
 package projekt;
 
-import org.sourcegrade.jagr.api.rubric.*;
+import org.sourcegrade.jagr.api.rubric.Criterion;
+import org.sourcegrade.jagr.api.rubric.Grader;
+import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
+import org.sourcegrade.jagr.api.rubric.Rubric;
+import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
+import org.sourcegrade.jagr.api.rubric.RubricProvider;
 import projekt.base.ChessboardDistanceCalculator;
 import projekt.h1_1.LocationTests;
 import projekt.h1_2.DistanceCalculatorTests;
@@ -25,6 +30,7 @@ import projekt.h2_4.PizzaImplTest;
 import projekt.h2_5.IceCreamImplConfigTest;
 import projekt.h2_5.PastaImplConfigTest;
 import projekt.h2_5.PizzaImplConfigTest;
+import projekt.h2_8.ExtraTest;
 import projekt.h_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
@@ -393,10 +399,21 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_8_2 = Criterion.builder()
         .shortDescription("Die Sortierung erfolgt nach dem Attribut 'priority'")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() -> ExtraTest.class.getMethod("testSortByPriorityOnly")))
+            .pointsPassedMax()
+            .pointsFailedMin()
+            .build())
         .build();
 
     public static final Criterion H2_8_3 = Criterion.builder()
         .shortDescription("Die Sortierung erfolgt zunächst nach Attribut 'priority', dann nach Attribut 'name'")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() -> ExtraTest.class.getMethod("testSortByPriorityOnly")))
+            .requirePass(JUnitTestRef.ofMethod(() -> ExtraTest.class.getMethod("testSortComplete")))
+            .pointsPassedMax()
+            .pointsFailedMin()
+            .build())
         .build();
 
     public static final Criterion H2_8 = Criterion.builder()
