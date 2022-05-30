@@ -26,7 +26,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.and(
                 JUnitTestRef.ofMethod(() ->
-                    LocationTests.class.getMethod("testMethods")),
+                    LocationTests.class.getMethod("testDefinition")),
                 JUnitTestRef.ofMethod(() ->
                     LocationTests.class.getMethod("testInstance", Integer.class, Integer.class))
             ))
@@ -173,13 +173,13 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.and(
                 JUnitTestRef.ofMethod(() ->
-                    PizzaConfigTest.class.getMethod("testMethods")),
+                    PizzaConfigTest.class.getMethod("testDefinition")),
                 JUnitTestRef.ofMethod(() ->
-                    PastaConfigTest.class.getMethod("testMethods")),
+                    PastaConfigTest.class.getMethod("testDefinition")),
                 JUnitTestRef.ofMethod(() ->
-                    IceCreamConfigTest.class.getMethod("testMethods")),
+                    IceCreamConfigTest.class.getMethod("testDefinition")),
                 JUnitTestRef.ofMethod(() ->
-                    SaucableConfigTest.class.getMethod("testMethods"))
+                    SaucableConfigTest.class.getMethod("testDefinition"))
             ))
             .build())
         .maxPoints(2)
