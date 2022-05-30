@@ -11,6 +11,7 @@ import projekt.utils.TypeUtils;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static projekt.utils.TutorAssertions.assertClassHasMethod;
 import static projekt.utils.TutorAssertions.assertClassHasModifiers;
 import static projekt.utils.TutorAssertions.assertClassImplements;
@@ -31,12 +32,18 @@ public class PizzaVariantTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
+    }
+
+    @Test
+    public void testDerivation() {
         assertClassImplements(clazz, ClassName.SAUCABLE_VARIANT);
         assertClassNotGeneric(clazz);
+    }
 
+    @Test
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_BASE_DIAMETER_SIGNATURE),
             TypeUtils.hasType(double.class)

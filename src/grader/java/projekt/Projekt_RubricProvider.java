@@ -15,6 +15,16 @@ import projekt.h2_2.IceCreamConfigTest;
 import projekt.h2_2.PastaConfigTest;
 import projekt.h2_2.PizzaConfigTest;
 import projekt.h2_2.SaucableConfigTest;
+import projekt.h2_3.IceCreamVariantTest;
+import projekt.h2_3.PastaVariantTest;
+import projekt.h2_3.PizzaVariantTest;
+import projekt.h2_3.SaucableVariantTest;
+import projekt.h2_4.IceCreamImplTest;
+import projekt.h2_4.PastaImplTest;
+import projekt.h2_4.PizzaImplTest;
+import projekt.h2_5.IceCreamImplConfigTest;
+import projekt.h2_5.PastaImplConfigTest;
+import projekt.h2_5.PizzaImplConfigTest;
 import projekt.h_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
@@ -209,14 +219,50 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_3_1 = Criterion.builder()
         .shortDescription("Die Interfaces **.Variant existieren alle")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    PizzaVariantTest.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaVariantTest.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamVariantTest.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    SaucableVariantTest.class.getMethod("testDefinition"))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_3_2 = Criterion.builder()
         .shortDescription("Die Methoden **.Variant#**() sind alle korrekt definiert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    PizzaVariantTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaVariantTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamVariantTest.class.getMethod("testMethods")),
+                JUnitTestRef.ofMethod(() ->
+                    SaucableVariantTest.class.getMethod("testMethods"))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_3_3 = Criterion.builder()
         .shortDescription("Die Interfaces **.Variant sind korrekt deklariert, insbesondere korrekt abgeleitet")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    PizzaVariantTest.class.getMethod("testDerivation")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaVariantTest.class.getMethod("testDerivation")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamVariantTest.class.getMethod("testDerivation")),
+                JUnitTestRef.ofMethod(() ->
+                    SaucableVariantTest.class.getMethod("testDerivation"))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_3 = Criterion.builder()
@@ -226,6 +272,16 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_4_1 = Criterion.builder()
         .shortDescription("Für jedes Interface existiert eine implementierende Klasse")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplTest.class.getMethod("testClass"))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_4_2 = Criterion.builder()
@@ -234,6 +290,16 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_4_3 = Criterion.builder()
         .shortDescription("Gemeinsame Eigenschafen (price, weight, variant, extras) und Getter-Methoden sind korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplTest.class.getMethod("testFields", SpecTester.class))
+            ))
+            .build())
         .build();
 
     public static final Criterion H2_4_4 = Criterion.builder()
@@ -251,6 +317,14 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_5_1 = Criterion.builder()
         .shortDescription("Für jede Food-Klasse existiert die jeweilige Config-Implementation")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(IceCreamImplConfigTest.class),
+                    JUnitTestRef.ofClass(PizzaImplConfigTest.class),
+                    JUnitTestRef.ofClass(PastaImplConfigTest.class)
+                ))
+            .build())
         .build();
 
     public static final Criterion H2_5_2 = Criterion.builder()

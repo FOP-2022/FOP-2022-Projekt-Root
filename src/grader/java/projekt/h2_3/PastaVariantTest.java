@@ -31,12 +31,18 @@ public class PastaVariantTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
+    }
+
+    @Test
+    public void testDerivation() {
         assertClassImplements(clazz, ClassName.SAUCABLE_VARIANT);
         assertClassNotGeneric(clazz);
+    }
 
+    @Test
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_BASE_THICKNESS_SIGNATURE),
             TypeUtils.hasType(double.class)

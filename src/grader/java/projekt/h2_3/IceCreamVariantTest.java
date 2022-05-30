@@ -11,11 +11,7 @@ import projekt.utils.TypeUtils;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
-import static projekt.utils.TutorAssertions.assertClassHasMethod;
-import static projekt.utils.TutorAssertions.assertClassHasModifiers;
-import static projekt.utils.TutorAssertions.assertClassImplements;
-import static projekt.utils.TutorAssertions.assertClassNotGeneric;
-import static projekt.utils.TutorAssertions.assertMethod;
+import static projekt.utils.TutorAssertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class IceCreamVariantTest extends TestClass {
@@ -31,12 +27,18 @@ public class IceCreamVariantTest extends TestClass {
     }
 
     @Test
-    @DisplayName("Interface and methods")
     public void testDefinition() {
         assertClassHasModifiers(clazz, Modifier.PUBLIC | Modifier.INTERFACE);
+    }
+
+    @Test
+    public void testDerivation() {
         assertClassImplements(clazz, ClassName.FOOD_VARIANT);
         assertClassNotGeneric(clazz);
+    }
 
+    @Test
+    public void testMethods() {
         assertMethod(
             assertClassHasMethod(clazz, METHOD_GET_BASE_FLAVOR_SIGNATURE),
             TypeUtils.hasType(String.class)
