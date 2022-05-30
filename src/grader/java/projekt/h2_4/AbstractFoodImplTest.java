@@ -1,6 +1,5 @@
 package projekt.h2_4;
 
-import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.food.Food;
 import projekt.spec.ClassSpecTestCase;
 
