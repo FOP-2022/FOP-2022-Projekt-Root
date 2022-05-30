@@ -1,13 +1,8 @@
 package projekt;
 
-import org.sourcegrade.jagr.api.rubric.Criterion;
-import org.sourcegrade.jagr.api.rubric.Grader;
-import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
-import org.sourcegrade.jagr.api.rubric.Rubric;
-import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
-import org.sourcegrade.jagr.api.rubric.RubricProvider;
-import projekt.base.ChessboardDistanceCalculator;
+import org.sourcegrade.jagr.api.rubric.*;
 import projekt.h1_1.LocationTests;
+import projekt.h1_2.ChessboardDistanceCalculatorTests;
 import projekt.h1_2.DistanceCalculatorTests;
 import projekt.h1_2.EuclideanDistanceCalculatorTests;
 import projekt.h1_2.ManhattanDistanceCalculatorTests;
@@ -66,7 +61,7 @@ public class Projekt_RubricProvider implements RubricProvider {
                     LocationTests.class.getMethod("testSub", Integer.class, Integer.class))
             ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -78,36 +73,60 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H1_2_1 = Criterion.builder()
         .shortDescription("Das Interface DistanceCalculator existiert und die Methoden sind korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(DistanceCalculatorTests.class))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    DistanceCalculatorTests.class.getMethod("testDefinition"))
+            ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H1_2_2 = Criterion.builder()
         .shortDescription("Die Implementation EuclideanDistanceCalculator ist korrekt")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(EuclideanDistanceCalculatorTests.class))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    EuclideanDistanceCalculatorTests.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    EuclideanDistanceCalculatorTests.class.getMethod("testInstance")),
+                JUnitTestRef.ofMethod(() ->
+                    EuclideanDistanceCalculatorTests.class.getMethod("testCalculateDistance", int.class, int.class, int.class, int.class))
+            ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H1_2_3 = Criterion.builder()
         .shortDescription("Die Implementation ManhattanDistanceCalculator ist korrekt")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(ManhattanDistanceCalculatorTests.class))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    ManhattanDistanceCalculatorTests.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    ManhattanDistanceCalculatorTests.class.getMethod("testInstance")),
+                JUnitTestRef.ofMethod(() ->
+                    ManhattanDistanceCalculatorTests.class.getMethod("testCalculateDistance", int.class, int.class, int.class, int.class))
+            ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H1_2_4 = Criterion.builder()
         .shortDescription("Die Implementation ChessboardDistanceCalculator ist korrekt")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(ChessboardDistanceCalculator.class))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    ChessboardDistanceCalculatorTests.class.getMethod("testDefinition")),
+                JUnitTestRef.ofMethod(() ->
+                    ChessboardDistanceCalculatorTests.class.getMethod("testInstance")),
+                JUnitTestRef.ofMethod(() ->
+                    ChessboardDistanceCalculatorTests.class.getMethod("testCalculateDistance", int.class, int.class, int.class, int.class))
+            ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -128,7 +147,7 @@ public class Projekt_RubricProvider implements RubricProvider {
                     TimeIntervalTest.class.getMethod("testConstructors", SpecTester.class))
             ))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -149,36 +168,40 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H2_1_1 = Criterion.builder()
         .shortDescription("Das Interface Saucable und Methode getSauce sind korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(SaucableTest.class))
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                SaucableTest.class.getMethod("testDefinition")))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H2_1_2 = Criterion.builder()
         .shortDescription("Das Interface Pizza und Methode getDiameter sind korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(PizzaTest.class))
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                PizzaTest.class.getMethod("testDefinition")))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H2_1_3 = Criterion.builder()
         .shortDescription("Das Interface Pasta und Methode getThickness sind korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(PastaTest.class))
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                PastaTest.class.getMethod("testDefinition")))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
     public static final Criterion H2_1_4 = Criterion.builder()
         .shortDescription("Das Interface IceCream und Methode getFlavor sind korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(IceCreamTest.class))
+            .requirePass(JUnitTestRef.ofMethod(() ->
+                IceCreamTest.class.getMethod("testDefinition")))
             .pointsPassedMax()
-            .pointsPassedMin()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -200,6 +223,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     SaucableConfigTest.class.getMethod("testDefinition"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .maxPoints(2)
         .build();
@@ -217,6 +242,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     SaucableConfigTest.class.getMethod("testMethods"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .maxPoints(2)
         .build();
@@ -239,6 +266,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     SaucableVariantTest.class.getMethod("testDefinition"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -255,6 +284,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     SaucableVariantTest.class.getMethod("testMethods"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -271,6 +302,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     SaucableVariantTest.class.getMethod("testDerivation"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -290,6 +323,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     PizzaImplTest.class.getMethod("testClass"))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -308,6 +343,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     PizzaImplTest.class.getMethod("testFields", SpecTester.class))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -327,14 +364,36 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H2_5_1 = Criterion.builder()
         .shortDescription("Für jede Food-Klasse existiert die jeweilige Config-Implementation")
         .grader(Grader.testAwareBuilder()
-            .requirePass(
-                JUnitTestRef.and(
-                    JUnitTestRef.ofClass(IceCreamImplConfigTest.class),
-                    JUnitTestRef.ofClass(PizzaImplConfigTest.class),
-                    JUnitTestRef.ofClass(PastaImplConfigTest.class)
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplConfigTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplConfigTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplConfigTest.class.getMethod("testMethods", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    IceCreamImplConfigTest.class.getMethod("testConstructors", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplConfigTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplConfigTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplConfigTest.class.getMethod("testMethods", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PizzaImplConfigTest.class.getMethod("testConstructors", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplConfigTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplConfigTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplConfigTest.class.getMethod("testMethods", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    PastaImplConfigTest.class.getMethod("testConstructors", SpecTester.class))
                 ))
-            .build())
-        .build();
+                .pointsPassedMax()
+                .pointsFailedMin()
+                .build())
+            .build();
 
     public static final Criterion H2_5_2 = Criterion.builder()
         .shortDescription("Es gibt einen sinnvollen Weg, um di eaktuellen Mutators zu speichern")
@@ -364,7 +423,18 @@ public class Projekt_RubricProvider implements RubricProvider {
     public static final Criterion H2_6_1 = Criterion.builder()
         .shortDescription("Die Klasse ExtraImpl ist korrekt deklariert")
         .grader(Grader.testAwareBuilder()
-            .requirePass(JUnitTestRef.ofClass(ExtraImplTest.class))
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofMethod(() ->
+                    ExtraImplTest.class.getMethod("testClass")),
+                JUnitTestRef.ofMethod(() ->
+                    ExtraImplTest.class.getMethod("testFields", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    ExtraImplTest.class.getMethod("testMethods", SpecTester.class)),
+                JUnitTestRef.ofMethod(() ->
+                    ExtraImplTest.class.getMethod("testConstructors", SpecTester.class))
+            ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -436,6 +506,8 @@ public class Projekt_RubricProvider implements RubricProvider {
                 JUnitTestRef.ofMethod(() ->
                     FoodTypeImplTest.class.getMethod("testFields", SpecTester.class))
             ))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -459,6 +531,7 @@ public class Projekt_RubricProvider implements RubricProvider {
             .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pastaTest")))
             .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("iceCreamTest")))
             .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -469,6 +542,7 @@ public class Projekt_RubricProvider implements RubricProvider {
             .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pastaVariantsTest")))
             .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("iceCreamVariantsTest")))
             .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -477,6 +551,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("allTest")))
             .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -490,6 +565,8 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.ofMethod(() ->
                 FoodBuilderTest.class.getMethod("testClass")))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 
@@ -498,6 +575,8 @@ public class Projekt_RubricProvider implements RubricProvider {
         .grader(Grader.testAwareBuilder()
             .requirePass(JUnitTestRef.ofMethod(() ->
                 FoodBuilderTest.class.getMethod("testMethods", SpecTester.class)))
+            .pointsPassedMax()
+            .pointsFailedMin()
             .build())
         .build();
 

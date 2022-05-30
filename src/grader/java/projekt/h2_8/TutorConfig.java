@@ -1,5 +1,6 @@
 package projekt.h2_8;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.food.Food;
 
 import java.math.BigDecimal;
