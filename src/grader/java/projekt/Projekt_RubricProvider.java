@@ -62,7 +62,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H1_1 = Criterion.builder()
-        .shortDescription("H1.1")
+        .shortDescription("H1.1 - Location")
         .addChildCriteria(H1_1_1, H1_1_2)
         .build();
 
@@ -109,7 +109,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H1_2 = Criterion.builder()
-        .shortDescription("H1.2")
+        .shortDescription("H1.2 - DistanceCalculator")
         .addChildCriteria(H1_2_1, H1_2_2, H1_2_3, H1_2_4)
         .build();
 
@@ -130,7 +130,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H1_3 = Criterion.builder()
-        .shortDescription("H1.3")
+        .shortDescription("H1.3 - TimeInterval")
         .addChildCriteria(H1_3_1, H1_3_2)
         .build();
 
@@ -176,7 +176,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_1 = Criterion.builder()
-        .shortDescription("H2.1")
+        .shortDescription("H2.1 - Food Interfaces")
         .addChildCriteria(H2_1_1, H2_1_2, H2_1_3, H2_1_4)
         .build();
 
@@ -207,7 +207,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_2 = Criterion.builder()
-        .shortDescription("H2.2")
+        .shortDescription("H2.2 - Food.Config Interfaces")
         .addChildCriteria(H2_2_1, H2_2_2)
         .build();
 
@@ -248,7 +248,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_3 = Criterion.builder()
-        .shortDescription("H2.3")
+        .shortDescription("H2.3 - Food.Variant Interfaces")
         .addChildCriteria(H2_3_1, H2_3_2, H2_3_3)
         .build();
 
@@ -290,7 +290,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_4 = Criterion.builder()
-        .shortDescription("H2.4")
+        .shortDescription("H2.4 - Food Implementationen")
         .addChildCriteria(H2_4_1, H2_4_2, H2_4_3, H2_4_4, H2_4_5)
         .build();
 
@@ -315,7 +315,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_5_2 = Criterion.builder()
-        .shortDescription("Es gibt einen sinnvollen Weg, um di eaktuellen Mutators zu speichern")
+        .shortDescription("Es gibt einen sinnvollen Weg, um die aktuellen Mutators zu speichern")
         .grader(Grader.descendingPriority())
         .build();
 
@@ -340,7 +340,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_5 = Criterion.builder()
-        .shortDescription("H2.5")
+        .shortDescription("H2.5 - Food.Config Implementationen")
         .addChildCriteria(H2_5_1, H2_5_2, H2_5_3, H2_5_4, H2_5_5, H2_5_6)
         .build();
 
@@ -367,7 +367,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_6 = Criterion.builder()
-        .shortDescription("H2.6")
+        .shortDescription("H2.6 - ExtraImpl")
         .addChildCriteria(H2_6_1, H2_6_2, H2_6_3)
         .build();
 
@@ -388,7 +388,7 @@ public class Projekt_RubricProvider implements RubricProvider {
         .build();
 
     public static final Criterion H2_7 = Criterion.builder()
-        .shortDescription("H2.7")
+        .shortDescription("H2.7 - Extras")
         .addChildCriteria(H2_7_1, H2_7_2, H2_7_3)
         .build();
 
