@@ -2,8 +2,10 @@ package projekt.h1_2;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 
+@TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class ChessboardDistanceCalculatorTests extends DistanceCalculatorImplTests {
 

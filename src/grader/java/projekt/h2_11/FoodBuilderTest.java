@@ -1,8 +1,10 @@
 package projekt.h2_11;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
 
+@TestForSubmission("projekt")
 public class FoodBuilderTest extends ClassSpecTestCase {
 
     FoodBuilderTest() {

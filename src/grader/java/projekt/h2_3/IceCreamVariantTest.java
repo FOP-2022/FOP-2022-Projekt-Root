@@ -1,9 +1,9 @@
 package projekt.h2_3;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
@@ -13,6 +13,7 @@ import java.util.Collections;
 
 import static projekt.utils.TutorAssertions.*;
 
+@TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class IceCreamVariantTest extends TestClass {
 

@@ -1,6 +1,7 @@
-package projekt.h_10;
+package projekt.h2_10;
 
 import org.junit.jupiter.api.Test;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.food.Extras;
 import projekt.food.FoodType;
 import projekt.food.FoodTypes;
@@ -10,6 +11,7 @@ import projekt.food.Pizza;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestForSubmission("projekt")
 public class FoodTypesTest {
 
     @Test

@@ -3,6 +3,7 @@ package projekt.h2_3;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import static projekt.utils.TutorAssertions.*;
 
+@TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class SaucableVariantTest extends TestClass {
 

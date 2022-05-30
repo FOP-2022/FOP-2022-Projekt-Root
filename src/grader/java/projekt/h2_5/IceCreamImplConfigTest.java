@@ -1,8 +1,10 @@
 package projekt.h2_5;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
 
+@TestForSubmission("projekt")
 public class IceCreamImplConfigTest extends ClassSpecTestCase {
 
     protected IceCreamImplConfigTest() {

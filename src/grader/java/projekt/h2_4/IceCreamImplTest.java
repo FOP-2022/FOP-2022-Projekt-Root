@@ -1,10 +1,12 @@
 package projekt.h2_4;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 
 import java.lang.reflect.Modifier;
 
-public class IceCreamImplTest extends AbstractFoodImpTest {
+@TestForSubmission("projekt")
+public class IceCreamImplTest extends AbstractFoodImplTest {
 
     IceCreamImplTest() {
         spec.requireClass(ClassName.ICE_CREAM_IMPL)

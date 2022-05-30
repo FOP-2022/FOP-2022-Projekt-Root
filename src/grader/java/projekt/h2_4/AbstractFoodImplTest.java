@@ -7,9 +7,9 @@ import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.util.List;
 
-public abstract class AbstractFoodImpTest extends ClassSpecTestCase {
+public abstract class AbstractFoodImplTest extends ClassSpecTestCase {
 
-    AbstractFoodImpTest() {
+    AbstractFoodImplTest() {
         spec.requireField("price")
             .requireType(BigDecimal.class)
             .requireModifiers(Modifier.PRIVATE | Modifier.FINAL);

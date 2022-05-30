@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
 
@@ -28,6 +29,7 @@ import static projekt.utils.TutorAssertions.assertEquals;
 import static projekt.utils.TutorAssertions.assertField;
 import static projekt.utils.TutorAssertions.assertMethod;
 
+@TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class LocationTests extends TestClass {
 

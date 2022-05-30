@@ -1,6 +1,7 @@
 package projekt.h1_3;
 
 import org.junit.jupiter.api.Test;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.rwap.ReflectedInstance;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestForSubmission("projekt")
 public class TimeIntervalTest extends ClassSpecTestCase {
 
     TimeIntervalTest() {

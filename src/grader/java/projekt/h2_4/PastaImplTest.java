@@ -1,10 +1,12 @@
 package projekt.h2_4;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 
 import java.lang.reflect.Modifier;
 
-public class PastaImplTest extends AbstractFoodImpTest {
+@TestForSubmission("projekt")
+public class PastaImplTest extends AbstractFoodImplTest {
 
     PastaImplTest() {
         spec.requireClass(ClassName.PASTA_IMPL)

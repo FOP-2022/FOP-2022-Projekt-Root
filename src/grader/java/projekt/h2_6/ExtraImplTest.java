@@ -1,11 +1,13 @@
 package projekt.h2_6;
 
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
 
 import java.lang.reflect.Modifier;
 import java.util.function.Consumer;
 
+@TestForSubmission("projekt")
 public class ExtraImplTest extends ClassSpecTestCase {
 
     ExtraImplTest() {

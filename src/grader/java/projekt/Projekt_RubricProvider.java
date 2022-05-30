@@ -34,7 +34,7 @@ import projekt.h2_5.PizzaImplConfigTest;
 import projekt.h2_6.ExtraImplTest;
 import projekt.h2_8.ExtraTest;
 import projekt.h2_9.FoodTypeImplTest;
-import projekt.h_10.FoodTypesTest;
+import projekt.h2_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
 @RubricForSubmission("projekt")

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
@@ -17,6 +18,7 @@ import static projekt.utils.TutorAssertions.assertClassImplements;
 import static projekt.utils.TutorAssertions.assertClassNotGeneric;
 import static projekt.utils.TutorAssertions.assertMethod;
 
+@TestForSubmission("projekt")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class PastaVariantTest extends TestClass {
 

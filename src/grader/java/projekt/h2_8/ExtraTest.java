@@ -1,6 +1,7 @@
 package projekt.h2_8;
 
 import org.junit.jupiter.api.Test;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.food.Extra;
 import projekt.spec.ClassSpecTestCase;
 import projekt.utils.ClassName;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestForSubmission("projekt")
 public class ExtraTest {
 
     @Test

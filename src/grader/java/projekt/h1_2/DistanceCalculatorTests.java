@@ -2,6 +2,7 @@ package projekt.h1_2;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import projekt.utils.ClassName;
 import projekt.utils.TestClass;
 import projekt.utils.TypeUtils;
@@ -14,6 +15,7 @@ import static projekt.utils.TutorAssertions.assertClassHasModifiers;
 import static projekt.utils.TutorAssertions.assertClassNotGeneric;
 import static projekt.utils.TutorAssertions.assertMethod;
 
+@TestForSubmission("projekt")
 @DisplayName("projekt.base.DistanceCalculator tests")
 public class DistanceCalculatorTests extends TestClass {
 
