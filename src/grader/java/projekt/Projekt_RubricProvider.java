@@ -397,22 +397,27 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_5_2 = Criterion.builder()
         .shortDescription("Es gibt einen sinnvollen Weg, um di eaktuellen Mutators zu speichern")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_5_3 = Criterion.builder()
         .shortDescription("get**() ohne Modifikation liefert Identity zurück")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_5_4 = Criterion.builder()
         .shortDescription("Setter setzt Attribut (muss nur für erste Zuweisung funktionieren)")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_5_5 = Criterion.builder()
         .shortDescription("get**() mit einmaliger Modifikation liefert gegebene Modifikationsfunktion zurück")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_5_6 = Criterion.builder()
         .shortDescription("get**() und Setter-Methoden funktionieren immer korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_5 = Criterion.builder()
@@ -440,10 +445,12 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_6_2 = Criterion.builder()
         .shortDescription("Der konstruktor von ExtraImpl is korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_6_3 = Criterion.builder()
         .shortDescription("Die Attribute und Getter-Methoden von ExtraImpl sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_6 = Criterion.builder()
@@ -453,15 +460,18 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_7_1 = Criterion.builder()
         .shortDescription(">= 4 Attribute sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_7_2 = Criterion.builder()
         .shortDescription(">= 8 Attribute und ALL sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_7_3 = Criterion.builder()
         .shortDescription("Die eigene Extras sind valide")
         .hiddenNotes("Min. 2, Generics, Sind in ALL enthalten")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_7 = Criterion.builder()
@@ -471,6 +481,7 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_8_1 = Criterion.builder()
         .shortDescription("Die Methode Extra.writeToConfig ist korrekt deklariert")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_8_2 = Criterion.builder()
@@ -587,26 +598,32 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_12_1 = Criterion.builder()
         .shortDescription("'PizzaImpl.Variant' ist korrekt außer 'create'")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12_2 = Criterion.builder()
         .shortDescription("'PizzaImpl.Variant.create' ist korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12_3 = Criterion.builder()
         .shortDescription("'PastaImpl.Variant' ist korrekt außer 'create'")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12_4 = Criterion.builder()
         .shortDescription("'PastaImpl.Variant.create' ist korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12_5 = Criterion.builder()
         .shortDescription("'IceCreamImpl.Variant' ist korrekt außer 'create'")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12_6 = Criterion.builder()
         .shortDescription("'IceCreamImpl.Variant.create' ist korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_12 = Criterion.builder()
@@ -616,14 +633,17 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_13_1 = Criterion.builder()
         .shortDescription("Die Gerichte vom Typ Pizza sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_13_2 = Criterion.builder()
         .shortDescription("Die Gerichte vom Typ Pasta sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_13_3 = Criterion.builder()
         .shortDescription("Die Gerichte vom Typ IceCream sind korrekt")
+        .grader(Grader.descendingPriority())
         .build();
 
     public static final Criterion H2_13 = Criterion.builder()
