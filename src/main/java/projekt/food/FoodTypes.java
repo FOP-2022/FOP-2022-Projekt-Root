@@ -47,9 +47,22 @@ public final class FoodTypes {
     );
 
     static {
+        // pizza
         PIZZA.addFoodVariant(Pizza.MARGHERITA);
-        PASTA.addFoodVariant(Pasta.RAVIOLI);
-        PASTA.addFoodVariant(Pasta.RIGATONI);
+        PIZZA.addFoodVariant(Pizza.HAWAII);
+        PIZZA.addFoodVariant(Pizza.RUCOLA);
+        PIZZA.addFoodVariant(Pizza.BBQ);
+
+        // pasta
         PASTA.addFoodVariant(Pasta.SPAGHETTI);
+        PASTA.addFoodVariant(Pasta.RIGATONI);
+        PASTA.addFoodVariant(Pasta.RAVIOLI);
+        PASTA.addFoodVariant(Pasta.FUSILLI);
+
+        // ice cream
+        ICE_CREAM.addFoodVariant(IceCream.VANILLA);
+        ICE_CREAM.addFoodVariant(IceCream.STRAWBERRY);
+        ICE_CREAM.addFoodVariant(IceCream.CHOCOLATE);
+        ICE_CREAM.addFoodVariant(IceCream.STRACCIATELLA);
     }
 }

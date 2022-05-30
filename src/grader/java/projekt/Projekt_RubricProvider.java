@@ -7,12 +7,12 @@ import org.sourcegrade.jagr.api.rubric.Rubric;
 import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
 import org.sourcegrade.jagr.api.rubric.RubricProvider;
 import projekt.base.ChessboardDistanceCalculator;
-import projekt.base.TimeInterval;
 import projekt.h1_1.LocationTests;
 import projekt.h1_2.DistanceCalculatorTests;
 import projekt.h1_2.EuclideanDistanceCalculatorTests;
 import projekt.h1_2.ManhattanDistanceCalculatorTests;
 import projekt.h1_3.TimeIntervalTest;
+import projekt.h_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
 @RubricForSubmission("projekt")
@@ -302,14 +302,30 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_10_1 = Criterion.builder()
         .shortDescription("Die Konstanten 'PIZZA', 'PASTA' und 'ICE_CREAM' sind korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pizzaTest")))
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pastaTest")))
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("iceCreamTest")))
+            .pointsPassedMax()
+            .build())
         .build();
 
     public static final Criterion H2_10_2 = Criterion.builder()
         .shortDescription("Die Food-Variants sind richtig gesetzt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pizzaVariantsTest")))
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("pastaVariantsTest")))
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("iceCreamVariantsTest")))
+            .pointsPassedMax()
+            .build())
         .build();
 
     public static final Criterion H2_10_3 = Criterion.builder()
         .shortDescription("Die Konstante 'ALL' ist korrekt")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofMethod(() -> FoodTypesTest.class.getMethod("allTest")))
+            .pointsPassedMax()
+            .build())
         .build();
 
     public static final Criterion H2_10 = Criterion.builder()
