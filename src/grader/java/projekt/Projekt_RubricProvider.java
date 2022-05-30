@@ -1,17 +1,20 @@
 package projekt;
 
-import org.sourcegrade.jagr.api.rubric.Criterion;
-import org.sourcegrade.jagr.api.rubric.Grader;
-import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
-import org.sourcegrade.jagr.api.rubric.Rubric;
-import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
-import org.sourcegrade.jagr.api.rubric.RubricProvider;
+import org.sourcegrade.jagr.api.rubric.*;
 import projekt.base.ChessboardDistanceCalculator;
 import projekt.h1_1.LocationTests;
 import projekt.h1_2.DistanceCalculatorTests;
 import projekt.h1_2.EuclideanDistanceCalculatorTests;
 import projekt.h1_2.ManhattanDistanceCalculatorTests;
 import projekt.h1_3.TimeIntervalTest;
+import projekt.h2_1.IceCreamTest;
+import projekt.h2_1.PastaTest;
+import projekt.h2_1.PizzaTest;
+import projekt.h2_1.SaucableTest;
+import projekt.h2_2.IceCreamConfigTest;
+import projekt.h2_2.PastaConfigTest;
+import projekt.h2_2.PizzaConfigTest;
+import projekt.h2_2.SaucableConfigTest;
 import projekt.h_10.FoodTypesTest;
 import projekt.spec.SpecTester;
 
@@ -126,18 +129,38 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_1_1 = Criterion.builder()
         .shortDescription("Das Interface Saucable und Methode getSauce sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(SaucableTest.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H2_1_2 = Criterion.builder()
         .shortDescription("Das Interface Pizza und Methode getDiameter sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(PizzaTest.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H2_1_3 = Criterion.builder()
         .shortDescription("Das Interface Pasta und Methode getThickness sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(PastaTest.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H2_1_4 = Criterion.builder()
         .shortDescription("Das Interface IceCream und Methode getFlavor sind korrekt deklariert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.ofClass(IceCreamTest.class))
+            .pointsPassedMax()
+            .pointsPassedMin()
+            .build())
         .build();
 
     public static final Criterion H2_1 = Criterion.builder()
@@ -147,11 +170,47 @@ public class Projekt_RubricProvider implements RubricProvider {
 
     public static final Criterion H2_2_1 = Criterion.builder()
         .shortDescription("Die Interfaces **.Config sind alle korrekt definiert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.or(
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
+                    JUnitTestRef.ofClass(PizzaConfigTest.class)
+                ),
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
+                    JUnitTestRef.ofClass(PastaConfigTest.class)
+                ),
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(IceCreamConfigTest.class),
+                    JUnitTestRef.ofClass(SaucableConfigTest.class)
+                ),
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(PizzaConfigTest.class),
+                    JUnitTestRef.ofClass(PastaConfigTest.class)
+                ),
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(PizzaConfigTest.class),
+                    JUnitTestRef.ofClass(SaucableConfigTest.class)
+                ),
+                JUnitTestRef.and(
+                    JUnitTestRef.ofClass(PastaConfigTest.class),
+                    JUnitTestRef.ofClass(SaucableConfigTest.class)
+                )
+            ))
+            .build())
         .maxPoints(2)
         .build();
 
     public static final Criterion H2_2_2 = Criterion.builder()
         .shortDescription("Die Methoden **.Config#**(T) sind alle korrekt definiert")
+        .grader(Grader.testAwareBuilder()
+            .requirePass(JUnitTestRef.and(
+                JUnitTestRef.ofClass(IceCreamConfigTest.class),
+                JUnitTestRef.ofClass(PizzaConfigTest.class),
+                JUnitTestRef.ofClass(SaucableConfigTest.class),
+                JUnitTestRef.ofClass(PastaConfigTest.class)
+            ))
+            .build())
         .maxPoints(2)
         .build();
 
